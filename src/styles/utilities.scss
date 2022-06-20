@@ -1,0 +1,41 @@
+.screen {
+  width: var(--appWidth);
+  height: var(--appHeight);
+  top: 0;
+  left: 0;
+  //overflow-y: scroll;
+  position: absolute;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-col {
+  display: flex;
+  flex-flow: column;
+}
+
+.flex-row {
+  display: flex;
+  flex-flow: row;
+}
+
+.block {
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

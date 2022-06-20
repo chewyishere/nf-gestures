@@ -1,0 +1,36 @@
+:root {
+  --appWidth: 375px;
+  --appHeight: 812px;
+  --appBg: #000;
+  background: var(--appBg);
+  /*
+    This is the "Netflix curve" frequently used in our app. It is similar to an ease-in-out
+    with the difference that it reaches the midpoint more quickly.
+  */
+  --weightedEaseInOut: cubic-bezier(0.5, 0, 0.1, 1);
+
+  --nfBrandRed: #e50914;
+  --nfInfoBlue: #0071eb;
+  --navigationTime: 250;
+  --borderRadius: 4;
+  --topMargin: 44px;
+  --sideMargin: 12px;
+  --titleWidth: 110px;
+  --titleHeight: 154px;
+  --paddingBottom: 100px;
+
+  --gradient-start: hsl(284, 100%, 83%);
+  --gradient-end: hsl(202, 85%, 60%);
+  --accent: hsl(320, 92.5%, 65%);
+  --delay: 2s;
+  --easeInCirc: cubic-bezier(0.6, 0.04, 0.98, 0.335);
+  --easeOutCirc: cubic-bezier(0.075, 0.82, 0.165, 1);
+  --easeInOutCubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+
+  @media only screen and (-webkit-min-device-pixel-ratio: 3) {
+    /* CSS */
+
+    --appWidth: 100vw;
+    --appHeight: 100vh;
+  }
+}

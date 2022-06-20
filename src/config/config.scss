@@ -1,0 +1,33 @@
+.config {
+  width: 300px;
+  position: absolute;
+  right: 0;
+  top: 20px;
+
+  &__header {
+    margin-bottom: 20px;
+    width: 132px;
+    p {
+      margin-bottom: 0;
+    }
+    hr {
+      margin-top: 0;
+      border-style: dashed;
+    }
+  }
+  ul {
+    width: 240px;
+  }
+
+  li {
+    list-style: none;
+    color: rgba(0, 0, 0, 0.7);
+    margin-bottom: 5px;
+    &:hover {
+      color: rgba(255, 255, 255, 1);
+    }
+    &.isActive {
+      color: var(--nfBrandRed);
+    }
+  }
+}

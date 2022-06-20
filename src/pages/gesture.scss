@@ -1,0 +1,22 @@
+.gesture-detector {
+  position: absolute;
+  width: var(--titleWidth);
+  height: var(--titleHeight);
+  transform-origin: 50% 50% 0px;
+  border-radius: 5px;
+  touch-action: none;
+}
+.gesture-action {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  position: absolute;
+  background: rgba(2255, 255, 255, 0.7);
+  right: -10px;
+  top: -10px;
+  z-index: 9;
+  svg {
+    width: 18px;
+    color: black;
+  }
+}

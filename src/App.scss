@@ -1,0 +1,103 @@
+.app {
+  &__mobile__wrapper {
+    text-align: center;
+    width: var(--appWidth);
+    height: var(--appHeight);
+    background: #000;
+    position: fixed;
+    overflow: hidden;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+
+    @media only screen and (min-width: 600px) {
+      outline: #333333 3px solid;
+      border-radius: 10px;
+    }
+  }
+
+  &__status {
+    width: 100%;
+    left: 0;
+    z-index: 99;
+    position: fixed;
+    align-items: center;
+    display: none;
+
+    &.-top {
+      top: 0;
+      height: 44px;
+    }
+
+    &.-bottom {
+      bottom: 0;
+      height: 24px;
+    }
+
+    @media only screen and (min-width: 600px) {
+      display: flex;
+    }
+  }
+
+  &__nav {
+    width: 100%;
+    z-index: 9;
+    background: #000;
+    bottom: 0;
+    padding: 5px 0 32px;
+    position: fixed;
+    justify-content: space-around;
+
+    &__item {
+      align-items: center;
+      color: rgba(255, 255, 255, 0.4);
+      gap: 5px;
+      transition: color 0.3s ease;
+
+      &.active {
+        color: rgba(255, 255, 255, 1);
+        transition: color 0.3s ease;
+      }
+      .label_img {
+        width: 24px;
+        height: 24px;
+      }
+      .label__bottom {
+        height: 10px;
+        width: 60px;
+      }
+    }
+  }
+}
+
+.scroller {
+  overflow-y: scroll !important;
+}
+
+.home {
+  z-index: 1;
+
+  &__billboard {
+    position: absolute;
+    top: 0;
+    @media only screen and (min-width: 600px) {
+      top: 44px;
+    }
+  }
+}
+
+.dot__container {
+  position: absolute;
+  transform: translateX(-154px);
+  bottom: 40px;
+}
+
+.dot {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 10px;
+  background: white;
+}

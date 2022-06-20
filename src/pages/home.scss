@@ -1,0 +1,99 @@
+.home {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  padding-top: 0px;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  @media only screen and (min-width: 600px) {
+    padding-top: 50px;
+  }
+}
+.home__nav {
+  position: relative;
+  z-index: 1;
+
+  &__col {
+    position: absolute;
+    width: 100%;
+  }
+  &__filters {
+    top: 60px;
+    gap: 32px;
+  }
+}
+
+.home__container {
+  position: relative;
+  top: 0;
+}
+
+.billboard {
+  height: 584px;
+  position: relative;
+
+  &__bg {
+    width: 100%;
+  }
+
+  &__info {
+    position: absolute;
+    bottom: 38px;
+    width: 307px;
+  }
+}
+
+.lolomo {
+  gap: 20px;
+  padding: 0 10px 180px;
+  overflow: hidden;
+
+  &__row {
+    position: relative;
+    gap: 6px;
+    height: calc(var(--titleHeight) + 25px);
+
+    &__label {
+      text-align: left;
+      bottom: -5px;
+    }
+    &__titles {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      overflow-y: visible;
+      gap: 8px;
+      top: 20px;
+      width: var(--appWidth);
+      height: calc(var(--titleHeight) + 20px);
+
+      -webkit-overflow-scrolling: touch;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+
+  .boxart {
+    width: var(--titleWidth);
+    height: var(--titleHeight);
+    background: #333;
+    overflow: hidden;
+    flex: 0 0 auto;
+    img {
+      width: 108%;
+    }
+  }
+}
+
+.lolomo__row__titles {
+  &.dragdrop-reorder {
+    &:after {
+      content: "";
+      width: 20px;
+    }
+  }
+}
