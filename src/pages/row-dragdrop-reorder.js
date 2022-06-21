@@ -37,7 +37,7 @@ const fn =
           immediate: false,
         };
 
-export default function RowDragDropReorder({ row, ClassNames }) {
+export default function RowDragDropReorder({ header, row, ClassNames }) {
   const order = useRef(row.map((_, index) => index)); // Store indicies as a local ref, this represents the item order
   const [springs, api] = useSprings(row.length, fn(order.current)); // Create springs, each corresponds to an item, controlling its transform, scale, etc.
   const bind = useDrag(
@@ -55,23 +55,26 @@ export default function RowDragDropReorder({ row, ClassNames }) {
   );
 
   return (
-    <div className={classNames("lolomo__row__titles", ClassNames)}>
-      {springs.map(({ zIndex, shadow, x, scale }, i) => (
-        <animated.div
-          {...bind(i)}
-          key={i}
-          style={{
-            zIndex,
-            boxShadow: shadow.to(
-              (s) => `rgba(0, 0, 0, 0.15) 0px ${s}px ${2 * s}px 0px`
-            ),
-            x,
-            scale,
-          }}
-          className="gesture-detector"
-          children={<TitleCard title={row[i]} />}
-        />
-      ))}
+    <div className="flex-col lolomo__row">
+      <span className="lolomo__row__label subtitle-heavy">{header}</span>
+      <div className={classNames("lolomo__row__titles", ClassNames)}>
+        {springs.map(({ zIndex, shadow, x, scale }, i) => (
+          <animated.div
+            {...bind(i)}
+            key={i}
+            style={{
+              zIndex,
+              boxShadow: shadow.to(
+                (s) => `rgba(0, 0, 0, 0.15) 0px ${s}px ${2 * s}px 0px`
+              ),
+              x,
+              scale,
+            }}
+            className="gesture-detector"
+            children={<TitleCard title={row[i]} />}
+          />
+        ))}
+      </div>
     </div>
   );
 }

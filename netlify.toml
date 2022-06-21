@@ -1,0 +1,30 @@
+# This file configures Netlify.
+# To see all available options, refer to
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+
+# This block contains the build step configuration
+[build]
+  # This is the local path that serves as the root directory of the
+  # deployed project.
+  # CRA outputs the built assets into the `build` folder, so we specify
+  # that as our root.
+  publish = "build/"
+  # This is the build command that runs on Netlify CI servers when we deploy. It's
+  # blank, meaning that no command is run. The reason for this is because we may
+  # wish to use private Netflix npm packages, but Netlify cannot read from our npm registry.
+  # Accordingly, we must install those packages locally and do a local build. Then, we push
+  # those built assets to Netlify. This happens automatically when `npm run deploy-public` is
+  # executed.
+  command = ""
+
+# This block manages SPA-like redirects: all routes load our `index.html` file.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# This block configures our basic auth. This is a placeholder until we get Meechum 
+# integrated with Netlify.
+[[headers]]
+  # This sets auth for all routes
+  for = "/*"

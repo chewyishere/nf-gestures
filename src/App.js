@@ -1,32 +1,32 @@
 import { useState } from "react";
 import Home from "pages/home";
 import RowLongPressRemove from "pages/row-longpress-remove";
-import RowLongPressActions from "pages/row-longpress-actions";
+import RowLongPressWiggle from "pages/row-longpress-wiggle";
 import RowDragDropReorder from "pages/row-dragdrop-reorder";
 import Config from "config/config";
 import "./App.scss";
 
 const demos = [
   {
-    title: "Drag & Drop: Re-arrange row",
+    title: "Drag & Drop: Reorder",
     demo: RowDragDropReorder,
     class: "dragdrop-reorder",
   },
   {
-    title: "Drag & Drop: Add to my list",
-    demo: RowLongPressActions,
-    class: "dragdrop-add",
+    title: "Long Press: Wiggle",
+    demo: RowLongPressWiggle,
+    class: "longpress-wiggle",
   },
-  {
-    title: "Long Press: Remove",
-    demo: RowLongPressRemove,
-    class: "longpress-remove",
-  },
-  {
-    title: "Long Press: Actions",
-    demo: RowLongPressActions,
-    class: "longpress-actions",
-  },
+  // {
+  //   title: "Drag & Drop: Add to my list",
+  //   demo: RowLongPressActions,
+  //   class: "dragdrop-add",
+  // },
+  // {
+  //   title: "Long Press: Remove",
+  //   demo: RowLongPressRemove,
+  //   class: "longpress-remove",
+  // },
 ];
 
 const App = () => {
@@ -39,7 +39,7 @@ const App = () => {
         setCurrentDemoIdx={setCurrentDemoIdx}
       />
       <div className="app__mobile__wrapper">
-        <Home demos={demos} />
+        <Home demos={demos} demoIdx={currentDemoIdx} />
       </div>
     </div>
   );

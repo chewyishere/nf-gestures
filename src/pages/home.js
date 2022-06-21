@@ -6,9 +6,15 @@ import "./home.scss";
 import "./gesture.scss";
 
 export default function Home({ demos, demoIdx = 0 }) {
-  const DynamicDemo = ({ demoIdx, row }) => {
+  const DynamicDemo = ({ row }) => {
     const Demo = demos[demoIdx].demo;
-    return <Demo row={row} ClassNames={demos[demoIdx].class} />;
+    return (
+      <Demo
+        row={row.titles}
+        header={row.title}
+        ClassNames={demos[demoIdx].class}
+      />
+    );
   };
 
   return (
@@ -32,12 +38,7 @@ export default function Home({ demos, demoIdx = 0 }) {
         <Billboard />
         <div className="lolomo flex-col surface-background-color-darker">
           {lolomo.map((_l) => (
-            <div key={_l.title} className="flex-col lolomo__row">
-              <span className="lolomo__row__label subtitle-heavy">
-                {_l.title}
-              </span>
-              <DynamicDemo demoIdx={0} row={_l.titles} />
-            </div>
+            <DynamicDemo key={_l.title} row={_l} />
           ))}
         </div>
       </div>

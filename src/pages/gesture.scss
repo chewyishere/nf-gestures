@@ -1,11 +1,31 @@
+.lolomo__row__titles {
+  @for $i from 1 through 10 {
+    .gesture-detector:nth-child(#{$i}n) {
+      .boxart {
+        animation-delay: #{$i * 0.2}s;
+      }
+    }
+  }
+}
+
 .gesture-detector {
   position: absolute;
   width: var(--titleWidth);
   height: var(--titleHeight);
   transform-origin: 50% 50% 0px;
   border-radius: 5px;
-  touch-action: none;
+  &.canDrag {
+    .boxart {
+      animation: wiggle 1.3s infinite;
+      touch-action: none;
+    }
+  }
+
+  @media only screen and (min-width: 600px) {
+    touch-action: none;
+  }
 }
+
 .gesture-action {
   width: 30px;
   height: 30px;
@@ -18,5 +38,23 @@
   svg {
     width: 18px;
     color: black;
+  }
+}
+
+@keyframes wiggle {
+  0% {
+    transform: rotate(1deg);
+  }
+  25% {
+    transform: rotate(-1deg);
+  }
+  50% {
+    transform: rotate(1deg);
+  }
+  75% {
+    transform: rotate(-1deg);
+  }
+  100% {
+    transform: rotate(1deg);
   }
 }

@@ -1,4 +1,13 @@
 import TitleCard from "common/titlecard";
+import { Remove } from "common/icons";
+
+const ActionRemove = () => {
+  return (
+    <div className="gesture-action flex-center -remove">
+      <Remove />
+    </div>
+  );
+};
 
 export default function RowLongPressRemove({ row }) {
   return (
