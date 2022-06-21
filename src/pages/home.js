@@ -6,13 +6,14 @@ import "./home.scss";
 import "./gesture.scss";
 
 export default function Home({ demos, demoIdx = 0 }) {
-  const DynamicDemo = ({ row }) => {
+  const DynamicDemo = ({ row, idx }) => {
     const Demo = demos[demoIdx].demo;
     return (
       <Demo
         row={row.titles}
         header={row.title}
         ClassNames={demos[demoIdx].class}
+        rowIdx={idx}
       />
     );
   };
@@ -37,8 +38,8 @@ export default function Home({ demos, demoIdx = 0 }) {
       <div className="home__container">
         <Billboard />
         <div className="lolomo flex-col surface-background-color-darker">
-          {lolomo.map((_l) => (
-            <DynamicDemo key={_l.title} row={_l} />
+          {lolomo.map((_l, _idx) => (
+            <DynamicDemo key={_l.title} row={_l} idx={_idx} />
           ))}
         </div>
       </div>

@@ -1,8 +1,9 @@
 import { useRef, useState, useEffect } from "react";
-import { useSprings, useSpring, animated, config } from "@react-spring/web";
+import { useSprings, animated, config } from "@react-spring/web";
 import { useDrag } from "@use-gesture/react";
 import { clamp } from "lodash";
 import { Edit } from "common/icons";
+import { useUIContext } from "contexts/ui";
 import swap from "lodash-move";
 import TitleCard from "common/titlecard";
 import classNames from "classnames";
@@ -37,17 +38,22 @@ const fnX = (
         };
 };
 
-export default function LongPressWiggle({ header, row, ClassNames }) {
-  const [canDrag, setCanDrag] = useState(false);
+export default function LongPressWiggle({ header, row, rowIdx, ClassNames }) {
+  const { focusedRowIdx, setFocsuedRowIdx, setRowEditingMode, rowEditingMode } =
+    useUIContext();
 
-  const onLongPress = () => {
-    console.log("longpress is triggered");
-    setCanDrag(true);
+  const canDrag = rowEditingMode && rowIdx === focusedRowIdx;
+
+  const onLongPress = (e) => {
+    console.log("longpress");
+    setRowEditingMode(true);
+    setFocsuedRowIdx(rowIdx);
   };
 
   const onClick = () => {
-    console.log("click is triggered");
-    setCanDrag(false);
+    if (rowIdx !== focusedRowIdx) {
+      setRowEditingMode(false);
+    }
   };
 
   const defaultOptions = {
@@ -81,25 +87,21 @@ export default function LongPressWiggle({ header, row, ClassNames }) {
     {}
   );
 
-  const fadeStyle = useSpring({
-    to: { opacity: canDrag ? 1 : 0 },
-    from: { opacity: 0 },
-    config: { duration: 200 },
-  });
-
   return (
-    <div className="flex-col lolomo__row">
+    <div
+      {...longPressEvent}
+      className={classNames("flex-col lolomo__row", ClassNames, {
+        isActive: canDrag,
+      })}
+    >
       <span className="lolomo__row__label subtitle-heavy">
         {header}
-        <animated.div style={fadeStyle}>
-          <Edit />
-        </animated.div>
+        <Edit className="lolomo-row__label__edit" />
       </span>
-      <div className={classNames("lolomo__row__titles", ClassNames)}>
+      <div className={"lolomo__row__titles"}>
         {springs.map(({ zIndex, shadow, x, scale }, i) => (
           <animated.div
             {...bind(i)}
-            {...longPressEvent}
             key={i}
             style={{
               zIndex,
@@ -109,8 +111,8 @@ export default function LongPressWiggle({ header, row, ClassNames }) {
               x,
               scale,
             }}
-            className={classNames("gesture-detector", { canDrag: canDrag })}
-            children={<TitleCard title={row[i]} canDrag={canDrag} />}
+            className="gesture-detector"
+            children={<TitleCard title={row[i]} isActive={canDrag} />}
           />
         ))}
       </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import { UIWrapper } from "./contexts/ui";
 import App from "./App";
 import { createRoot } from "react-dom/client";
 import "./index.scss";
@@ -16,6 +17,8 @@ root.render(
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
     </Helmet>
-    <App />
+    <UIWrapper>
+      <App />
+    </UIWrapper>
   </React.StrictMode>
 );

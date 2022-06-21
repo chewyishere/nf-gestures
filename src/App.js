@@ -1,31 +1,33 @@
 import { useState } from "react";
 import Home from "pages/home";
-import RowLongPressRemove from "pages/row-longpress-remove";
-import RowLongPressWiggle from "pages/row-longpress-wiggle";
-import RowDragDropReorder from "pages/row-dragdrop-reorder";
+import LongPressRemove from "pages/row-longpress-remove";
+import LongPressWiggle from "pages/row-longpress-wiggle";
+import DragDropReorder from "pages/row-dragdrop-reorder";
+import Test from "pages/test";
 import Config from "config/config";
 import "./App.scss";
 
 const demos = [
   {
+    title: "Long Press: Remove",
+    demo: LongPressRemove,
+    class: "longpress-remove",
+  },
+  {
     title: "Drag & Drop: Reorder",
-    demo: RowDragDropReorder,
+    demo: DragDropReorder,
     class: "dragdrop-reorder",
   },
   {
     title: "Long Press: Wiggle",
-    demo: RowLongPressWiggle,
+    demo: LongPressWiggle,
     class: "longpress-wiggle",
   },
+
   // {
   //   title: "Drag & Drop: Add to my list",
   //   demo: RowLongPressActions,
   //   class: "dragdrop-add",
-  // },
-  // {
-  //   title: "Long Press: Remove",
-  //   demo: RowLongPressRemove,
-  //   class: "longpress-remove",
   // },
 ];
 

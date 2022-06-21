@@ -7,14 +7,6 @@ import { Remove } from "common/icons";
 import TitleCard from "common/titlecard";
 import classNames from "classnames";
 
-const ActionRemove = () => {
-  return (
-    <div className="gesture-action flex-center -remove">
-      <Remove />
-    </div>
-  );
-};
-
 const TITLE_GAP_X = 120;
 
 const fn =
@@ -37,7 +29,7 @@ const fn =
           immediate: false,
         };
 
-export default function RowDragDropReorder({ header, row, ClassNames }) {
+export default function DragDropReorder({ header, row, ClassNames }) {
   const order = useRef(row.map((_, index) => index)); // Store indicies as a local ref, this represents the item order
   const [springs, api] = useSprings(row.length, fn(order.current)); // Create springs, each corresponds to an item, controlling its transform, scale, etc.
   const bind = useDrag(

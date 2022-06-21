@@ -84,20 +84,11 @@
   .boxart {
     width: var(--titleWidth);
     height: var(--titleHeight);
-    background: #333;
     overflow: hidden;
     flex: 0 0 auto;
     img {
-      width: 108%;
-    }
-  }
-}
-
-.lolomo__row__titles {
-  &.dragdrop-reorder {
-    &:after {
-      content: "";
-      width: 20px;
+      border-radius: 5px;
+      width: 100%;
     }
   }
 }

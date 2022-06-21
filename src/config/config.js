@@ -1,7 +1,9 @@
 import classNames from "classnames";
+import { useUIContext } from "contexts/ui";
 import "./config.scss";
 
 export default function Config({ demos, currentDemoIdx, setCurrentDemoIdx }) {
+  const { reset } = useUIContext();
   return (
     <div className="config">
       <ul>
@@ -17,7 +19,14 @@ export default function Config({ demos, currentDemoIdx, setCurrentDemoIdx }) {
               isActive: currentDemoIdx === _idx,
             })}
           >
-            <a onClick={() => setCurrentDemoIdx(_idx)}>{_d.title}</a>
+            <a
+              onClick={() => {
+                reset();
+                setCurrentDemoIdx(_idx);
+              }}
+            >
+              {_d.title}
+            </a>
           </li>
         ))}
       </ul>
