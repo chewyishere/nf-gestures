@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import { useSprings, animated, config } from "@react-spring/web";
 import { useDrag } from "@use-gesture/react";
 import { clamp } from "lodash";
@@ -38,7 +38,7 @@ const fnX = (
         };
 };
 
-export default function LongPressWiggle({ header, row, rowIdx, ClassNames }) {
+export default function LongPressReorder({ header, row, rowIdx, ClassNames }) {
   const { focusedRowIdx, setFocsuedRowIdx, setRowEditingMode, rowEditingMode } =
     useUIContext();
 

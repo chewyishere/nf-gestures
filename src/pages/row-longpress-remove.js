@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Edit } from "common/icons";
 import { AnimatePresence, motion } from "framer-motion";
 import { useUIContext } from "contexts/ui";
@@ -12,7 +12,6 @@ export default function LongPressRemove({ header, row, rowIdx, ClassNames }) {
   const { focusedRowIdx, setFocsuedRowIdx, setRowEditingMode, rowEditingMode } =
     useUIContext();
   const [items, setItems] = useState(row);
-
   const isActive = rowEditingMode && rowIdx === focusedRowIdx;
 
   const onLongPress = (e) => {

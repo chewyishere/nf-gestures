@@ -20,7 +20,15 @@ const UIWrapper = ({ children }) => {
     });
   };
 
-  const reset = (value) => {
+  const setFocusedTitle = (value) => {
+    updateUI((prevState) => {
+      const newState = { ...prevState };
+      newState.focusedTitle = value;
+      return newState;
+    });
+  };
+
+  const reset = () => {
     updateUI((prevState) => {
       return defaultState;
     });
@@ -28,9 +36,11 @@ const UIWrapper = ({ children }) => {
 
   const defaultState = {
     rowEditingMode: false,
-    setRowEditingMode,
     focusedRowIdx: 0,
+    focusedTitle: {},
+    setRowEditingMode,
     setFocsuedRowIdx,
+    setFocusedTitle,
     reset,
   };
 

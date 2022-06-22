@@ -1,37 +1,37 @@
 import { useState } from "react";
+import { useUIContext } from "contexts/ui";
 import Home from "pages/home";
 import LongPressRemove from "pages/row-longpress-remove";
-import LongPressWiggle from "pages/row-longpress-wiggle";
-import DragDropReorder from "pages/row-dragdrop-reorder";
-import Test from "pages/test";
+import LongPressReorder from "pages/row-longpress-reorder";
+import DragToMyList from "pages/row-drag-to-my-list";
 import Config from "config/config";
+import CopyCard from "common/copycard";
 import "./App.scss";
 
 const demos = [
   {
-    title: "Long Press: Remove",
-    demo: LongPressRemove,
+    title: "Long Press Trigger: Remove",
+    component: LongPressRemove,
     class: "longpress-remove",
+    isMyList: true,
   },
   {
-    title: "Drag & Drop: Reorder",
-    demo: DragDropReorder,
-    class: "dragdrop-reorder",
+    title: "Long Press Trigger: Drag to reorder",
+    component: LongPressReorder,
+    class: "longpress-reorder",
+    isMyList: true,
   },
   {
-    title: "Long Press: Wiggle",
-    demo: LongPressWiggle,
-    class: "longpress-wiggle",
+    title: "Long Press Trigger: Drag to my list",
+    component: DragToMyList,
+    class: "longpress-drag-to-mylist",
+    isMyList: false,
   },
-
-  // {
-  //   title: "Drag & Drop: Add to my list",
-  //   demo: RowLongPressActions,
-  //   class: "dragdrop-add",
-  // },
 ];
 
 const App = () => {
+  const { rowEditingMode } = useUIContext();
+
   const [currentDemoIdx, setCurrentDemoIdx] = useState(0);
   return (
     <div className="app">
@@ -40,8 +40,9 @@ const App = () => {
         currentDemoIdx={currentDemoIdx}
         setCurrentDemoIdx={setCurrentDemoIdx}
       />
+      {currentDemoIdx === 2 && rowEditingMode && <CopyCard />}
       <div className="app__mobile__wrapper">
-        <Home demos={demos} demoIdx={currentDemoIdx} />
+        <Home demo={demos[currentDemoIdx]} />
       </div>
     </div>
   );

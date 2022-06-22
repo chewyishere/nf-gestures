@@ -24,7 +24,7 @@
   }
 }
 
-.longpress-wiggle,
+.longpress-reorder,
 .longpress-remove {
   .lolomo-row__label__edit {
     opacity: 0;
@@ -54,11 +54,40 @@
   }
 }
 
-.longpress-remove {
+.longpress-remove,
+.longpress-drag-to-mylist {
   .gesture-detector {
     position: absolute;
   }
   .boxart {
     overflow: visible;
+  }
+}
+
+.longpress-drag-to-mylist {
+  .lolomo-row__label__edit {
+    display: none;
+  }
+
+  .gesture-detector {
+    &.canDrag {
+      .boxart {
+        animation: wiggle 1.3s infinite;
+        touch-action: none;
+      }
+    }
+  }
+}
+
+.dragging-title {
+  position: absolute;
+  inset: auto !important;
+  z-index: 10;
+  .boxart {
+    width: 100%;
+    height: 100%;
+    img {
+      width: 100%;
+    }
   }
 }

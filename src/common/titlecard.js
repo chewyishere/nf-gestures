@@ -1,4 +1,3 @@
-import { useRef, useState, useEffect } from "react";
 import { Remove } from "common/icons";
 
 const ActionRemove = ({ onAction, title }) => {
@@ -19,7 +18,7 @@ const Actions = {
 };
 
 export default function TitleCard({ title, isActive, actions = [], onAction }) {
-  const showActions = isActive && actions.length;
+  const showActions = isActive && actions.length > 0;
 
   const DynamicAction = ({ action }) => {
     const Action = Actions[action];

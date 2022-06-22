@@ -5,14 +5,14 @@ import classNames from "classnames";
 import "./home.scss";
 import "./gesture.scss";
 
-export default function Home({ demos, demoIdx = 0 }) {
+export default function Home({ demo }) {
   const DynamicDemo = ({ row, idx }) => {
-    const Demo = demos[demoIdx].demo;
+    const Demo = demo.component;
     return (
       <Demo
         row={row.titles}
         header={row.title}
-        ClassNames={demos[demoIdx].class}
+        ClassNames={demo.class}
         rowIdx={idx}
       />
     );
@@ -22,22 +22,14 @@ export default function Home({ demos, demoIdx = 0 }) {
     <div className="home screen">
       <IOSStatus />
       <Nav activePageIdx={0} />
-      <div className="home__nav flex-col">
-        <img
-          className="home__nav__col"
-          src={home.navSrc}
-          alt="nav"
-          draggable="false"
-        />
-        <div className="home__nav__col home__nav__filters flex-center  body-standard">
-          {home.filters.map((_f) => (
-            <span key={_f}>{_f}</span>
-          ))}
-        </div>
-      </div>
-      <div className="home__container">
-        <Billboard />
-        <div className="lolomo flex-col surface-background-color-darker">
+      <div
+        className={classNames(
+          "home__container",
+          demo.isMyList ? "isMyList" : "isHome"
+        )}
+      >
+        {demo.isMyList ? <ProfileNav /> : <Billboard />}
+        <div className="lolomo flex-col">
           {lolomo.map((_l, _idx) => (
             <DynamicDemo key={_l.title} row={_l} idx={_idx} />
           ))}
@@ -47,9 +39,36 @@ export default function Home({ demos, demoIdx = 0 }) {
   );
 }
 
+const ProfileNav = () => {
+  return (
+    <div className="mylist__nav flex-col">
+      <img
+        className="home__nav__col"
+        src={home.navSrc}
+        alt="nav"
+        draggable="false"
+      />
+      <p className="title-heavy">My Lists</p>
+    </div>
+  );
+};
+
 const Billboard = () => {
   return (
     <div className="billboard flex-center">
+      <div className="home__nav flex-col">
+        <img
+          className="home__nav__col"
+          src={home.navSrc}
+          alt="nav"
+          draggable="false"
+        />
+      </div>
+      <div className="home__nav__col home__nav__filters flex-center  body-standard">
+        {home.filters.map((_f) => (
+          <span key={_f}>{_f}</span>
+        ))}
+      </div>
       <img
         className="billboard__bg"
         src={home.billboardSrc}
