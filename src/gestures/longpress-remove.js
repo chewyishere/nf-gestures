@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Edit } from "common/icons";
 import { AnimatePresence, motion } from "framer-motion";
 import { useUIContext } from "contexts/ui";

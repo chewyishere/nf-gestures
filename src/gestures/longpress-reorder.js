@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useSprings, animated, config } from "@react-spring/web";
 import { useDrag } from "@use-gesture/react";
 import { clamp } from "lodash";
@@ -42,10 +42,13 @@ export default function LongPressReorder({ header, row, rowIdx, ClassNames }) {
   const { focusedRowIdx, setFocsuedRowIdx, setRowEditingMode, rowEditingMode } =
     useUIContext();
 
+  useEffect(() => {
+    //console.log("re-render");
+  }, []);
+
   const canDrag = rowEditingMode && rowIdx === focusedRowIdx;
 
   const onLongPress = (e) => {
-    console.log("longpress");
     setRowEditingMode(true);
     setFocsuedRowIdx(rowIdx);
   };

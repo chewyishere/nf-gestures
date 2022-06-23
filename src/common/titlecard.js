@@ -1,21 +1,4 @@
-import { Remove } from "common/icons";
-
-const ActionRemove = ({ onAction, title }) => {
-  return (
-    <div
-      className="gesture-action flex-center -remove"
-      onClick={() => {
-        onAction("remove", title);
-      }}
-    >
-      <Remove />
-    </div>
-  );
-};
-
-const Actions = {
-  remove: ActionRemove,
-};
+import { Actions } from "./actions";
 
 export default function TitleCard({ title, isActive, actions = [], onAction }) {
   const showActions = isActive && actions.length > 0;

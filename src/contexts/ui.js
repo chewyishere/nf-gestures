@@ -28,6 +28,14 @@ const UIWrapper = ({ children }) => {
     });
   };
 
+  const setShowModal = (value) => {
+    updateUI((prevState) => {
+      const newState = { ...prevState };
+      newState.showModal = value;
+      return newState;
+    });
+  };
+
   const reset = () => {
     updateUI((prevState) => {
       return defaultState;
@@ -38,9 +46,11 @@ const UIWrapper = ({ children }) => {
     rowEditingMode: false,
     focusedRowIdx: 0,
     focusedTitle: {},
+    showModal: false,
     setRowEditingMode,
     setFocsuedRowIdx,
     setFocusedTitle,
+    setShowModal,
     reset,
   };
 

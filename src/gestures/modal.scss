@@ -1,0 +1,36 @@
+@import "./gestures-animations.scss";
+
+.modal {
+  width: var(--appWidth);
+  height: var(--appHeight);
+  z-index: 10;
+  position: absolute;
+
+  &__overlay {
+    background: rgba(0, 0, 0, 0.9);
+    width: 100%;
+    height: 100%;
+  }
+
+  &__addArea {
+    position: absolute;
+    bottom: 150px;
+  }
+
+  .dragging-title {
+    position: absolute;
+    inset: auto !important;
+    z-index: 10;
+    .boxart {
+      width: 100%;
+      height: 100%;
+      animation: wiggle 1.3s infinite;
+      touch-action: none;
+
+      img {
+        width: 100%;
+        border-radius: 5px;
+      }
+    }
+  }
+}

@@ -14,3 +14,4 @@ export { default as ArrowDown } from "@netflixdesign/hawkins-icons/dist/esm/mobi
 
 export { default as Remove } from "@netflixdesign/hawkins-icons/dist/esm/mobile/Minus/Standard";
 export { default as Edit } from "@netflixdesign/hawkins-icons/dist/esm/mobile/Edit/Standard";
+export { default as Add } from "@netflixdesign/hawkins-icons/dist/esm/mobile/Add/Standard";

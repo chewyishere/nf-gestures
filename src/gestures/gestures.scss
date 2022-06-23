@@ -1,4 +1,4 @@
-@import "./gesture-animations.scss";
+@import "./gestures-animations.scss";
 
 .gesture-detector {
   position: absolute;
@@ -6,22 +6,7 @@
   height: var(--titleHeight);
   transform-origin: 50% 50% 0px;
   border-radius: 5px;
-}
-
-.gesture-action {
-  z-index: 10;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  position: absolute;
-  background: rgba(255, 255, 255, 0.7);
-  right: -5px;
-  top: -5px;
-  z-index: 5;
-  svg {
-    width: 18px;
-    color: black;
-  }
+  touch-action: none;
 }
 
 .longpress-reorder,
@@ -54,17 +39,7 @@
   }
 }
 
-.longpress-remove,
-.longpress-drag-to-mylist {
-  .gesture-detector {
-    position: absolute;
-  }
-  .boxart {
-    overflow: visible;
-  }
-}
-
-.longpress-drag-to-mylist {
+.longpress-modal {
   .lolomo-row__label__edit {
     display: none;
   }
@@ -75,19 +50,6 @@
         animation: wiggle 1.3s infinite;
         touch-action: none;
       }
-    }
-  }
-}
-
-.dragging-title {
-  position: absolute;
-  inset: auto !important;
-  z-index: 10;
-  .boxart {
-    width: 100%;
-    height: 100%;
-    img {
-      width: 100%;
     }
   }
 }

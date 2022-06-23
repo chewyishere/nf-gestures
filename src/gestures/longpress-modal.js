@@ -8,18 +8,12 @@ import useLongPress from "hooks/useLongPress";
 
 const TITLE_W = 120;
 
-export default function DragToMyList({ header, row, rowIdx, ClassNames }) {
-  const { focusedTitle, setFocusedTitle, setRowEditingMode, rowEditingMode } =
-    useUIContext();
+export default function LongPressModal({ header, row, rowIdx, ClassNames }) {
+  const { focusedTitle, setFocusedTitle, setShowModal } = useUIContext();
 
   const onLongPress = (e, id, title, boundingBox) => {
-    console.log(e);
-    setRowEditingMode(true);
+    setShowModal(true);
     setFocusedTitle({ id, title, boundingBox });
-  };
-
-  const onClick = () => {
-    setRowEditingMode(false);
   };
 
   const defaultOptions = {
@@ -42,10 +36,7 @@ export default function DragToMyList({ header, row, rowIdx, ClassNames }) {
               i={i}
               id={`${rowIdx}-${item}`}
               onLongPress={onLongPress}
-              onClick={onClick}
-              isActive={
-                rowEditingMode && focusedTitle.id === `${rowIdx}-${item}`
-              }
+              // isActive={focusedTitle.id === `${rowIdx}-${item}`}
               defaultOptions={defaultOptions}
             />
           ))}
@@ -60,7 +51,6 @@ const AnimatedTitle = ({
   i,
   id,
   onLongPress,
-  onClick,
   defaultOptions,
   isActive,
 }) => {
@@ -73,7 +63,7 @@ const AnimatedTitle = ({
 
   const longPressEvent = useLongPress(
     (e) => onLongPress(e, id, item, titleRef.current.getBoundingClientRect()),
-    onClick,
+    () => {},
     defaultOptions
   );
 

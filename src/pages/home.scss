@@ -94,8 +94,8 @@
   .boxart {
     width: var(--titleWidth);
     height: var(--titleHeight);
-    overflow: hidden;
     flex: 0 0 auto;
+    overflow: visible;
     img {
       border-radius: 5px;
       width: 100%;
