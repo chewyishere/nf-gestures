@@ -3,6 +3,15 @@
   position: absolute;
   left: 0;
   top: 20px;
+  z-index: 19;
+
+  &__list {
+    margin: 0;
+    position: absolute;
+    min-width: 240px;
+    transform: translateY(0%);
+    transition: transform 200ms ease-out;
+  }
 
   &__header {
     margin-bottom: 20px;
@@ -15,9 +24,6 @@
       border-style: dashed;
     }
   }
-  ul {
-    min-width: 240px;
-  }
 
   li {
     list-style: none;
@@ -28,6 +34,45 @@
     }
     &.isActive {
       color: var(--nfBrandRed);
+    }
+  }
+
+  &__mobile__cta {
+    display: none;
+    position: absolute;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    z-index: 9;
+    background: black;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .config {
+    top: 0px;
+    width: 100%;
+
+    &__list {
+      top: 0px;
+      background: black;
+      height: 200px;
+      width: 100%;
+    }
+
+    li {
+      color: rgba(255, 255, 255, 1);
+    }
+    &__mobile__cta {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  &.isHiding {
+    .config__list {
+      transform: translateY(-150%);
     }
   }
 }

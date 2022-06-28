@@ -4,15 +4,15 @@
     width: var(--appWidth);
     height: var(--appHeight);
     background: #000;
-    position: fixed;
-    overflow: hidden;
-    transform: translate(-50%, -50%);
-    left: 50%;
-    top: 50%;
 
     @media only screen and (min-width: 600px) {
       outline: #333333 3px solid;
       border-radius: 10px;
+      position: fixed;
+      overflow: hidden;
+      transform: translate(-50%, -50%);
+      left: 50%;
+      top: 50%;
     }
   }
 

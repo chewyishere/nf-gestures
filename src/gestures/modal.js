@@ -53,9 +53,10 @@ export default function Modal() {
       />
       <motion.div
         drag
-        dragConstraints={{ left: -100, right: 100, top: -300, bottom: 300 }}
+        dragConstraints={{ left: -100, right: 100, top: -250, bottom: 250 }}
         onDrag={onDrag}
         dragElastic={0.8}
+        whileDrag={{ scale: 0.8 }}
         onDragEnd={() => {
           onList && sequence();
         }}
@@ -66,7 +67,7 @@ export default function Modal() {
       >
         <TitleCard title={focusedTitle.title} />
       </motion.div>
-      <div ref={addRef} className="modal__addArea">
+      <div ref={addRef} className="modal__addArea center-abs">
         <ActionAdd />
       </div>
     </motion.div>

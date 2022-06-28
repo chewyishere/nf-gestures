@@ -16,7 +16,7 @@ const ActionRemove = ({ onAction, title }) => {
 
 const ActionAdd = () => {
   return (
-    <div className="actions flex-center -remove">
+    <div className="actions flex-center -add">
       <Add />
     </div>
   );
