@@ -6,6 +6,12 @@ import "./gestures.scss";
 
 const gestures = [
   {
+    title: "Long Press: Show Draggable Modal",
+    component: LongPressModal,
+    class: "longpress-modal",
+    isMyList: false,
+  },
+  {
     title: "Long Press: Remove",
     component: LongPressRemove,
     class: "longpress-remove",
@@ -16,12 +22,6 @@ const gestures = [
     component: LongPressReorder,
     class: "longpress-reorder",
     isMyList: true,
-  },
-  {
-    title: "Long Press: Show Draggable Modal",
-    component: LongPressModal,
-    class: "longpress-modal",
-    isMyList: false,
   },
 ];
 
