@@ -1,16 +1,17 @@
+import { motion } from "framer-motion";
 import { Remove, Add } from "common/icons";
 import "./actions.scss";
 
 const ActionRemove = ({ onAction, title }) => {
   return (
-    <div
+    <motion.div
       className="actions flex-center -remove"
-      onClick={() => {
+      onTap={() => {
         onAction("remove", title);
       }}
     >
       <Remove />
-    </div>
+    </motion.div>
   );
 };
 
@@ -27,4 +28,4 @@ const Actions = {
   add: ActionAdd,
 };
 
-export { Actions, ActionAdd };
+export { Actions, ActionAdd, ActionRemove };
