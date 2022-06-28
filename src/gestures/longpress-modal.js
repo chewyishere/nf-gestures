@@ -22,27 +22,25 @@ export default function LongPressModal({ header, row, rowIdx, ClassNames }) {
   };
 
   return (
-    <>
-      <div className={classNames("flex-col lolomo__row", ClassNames)}>
-        <span className="lolomo__row__label subtitle-heavy">
-          {header}
-          <Edit className="lolomo-row__label__edit" />
-        </span>
-        <div className="lolomo__row__titles">
-          {row.map((item, i) => (
-            <AnimatedTitle
-              key={`${rowIdx}-${item}`}
-              item={item}
-              i={i}
-              id={`${rowIdx}-${item}`}
-              onLongPress={onLongPress}
-              // isActive={focusedTitle.id === `${rowIdx}-${item}`}
-              defaultOptions={defaultOptions}
-            />
-          ))}
-        </div>
+    <div className={classNames("flex-col lolomo__row", ClassNames)}>
+      <span className="lolomo__row__label subtitle-heavy">
+        {header}
+        <Edit className="lolomo-row__label__edit" />
+      </span>
+      <div className="lolomo__row__titles">
+        {row.map((item, i) => (
+          <AnimatedTitle
+            key={`${rowIdx}-${item}`}
+            item={item}
+            i={i}
+            id={`${rowIdx}-${item}`}
+            onLongPress={onLongPress}
+            // isActive={focusedTitle.id === `${rowIdx}-${item}`}
+            defaultOptions={defaultOptions}
+          />
+        ))}
       </div>
-    </>
+    </div>
   );
 }
 
