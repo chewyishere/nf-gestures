@@ -34,12 +34,12 @@ export default function Home({ currentDemoIdx }) {
       <div
         className={classNames(
           "home__container",
-          gesture.isMyList ? "isMyList" : "isHome"
+          gesture.page === "list" ? "isMyList" : "isHome"
         )}
       >
-        {gesture.isMyList ? <ProfileNav /> : <Billboard />}
+        {gesture.page === "list" ? <ProfileNav /> : <Billboard />}
         <div className="lolomo flex-col">
-          {lolomo.map((_l, _idx) => (
+          {lolomo[gesture.page].map((_l, _idx) => (
             <DynamicGestureRow
               key={_l.title}
               row={_l}

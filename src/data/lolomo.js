@@ -1,13 +1,13 @@
-const lolomo = [
+const lolomo__list = [
   {
-    title: "My Top List",
+    title: "My favorites",
     titles: [
       70143836, 81435684, 80021955, 80057281, 80174608, 70205012, 80234304,
       81040344,
     ],
   },
   {
-    title: "Weekend Binge Watch",
+    title: "Weekend Binge",
     titles: [
       80210767, 70208599, 80242342, 80222802, 80186863, 80994082, 70143825,
     ],
@@ -34,5 +34,49 @@ const lolomo = [
     titles: [70153373, 80191036, 80990849],
   },
 ];
+
+const lolomo__home = [
+  {
+    title: "Popular on Netflix",
+    titles: [
+      80057281, 81040344, 80234304, 70143836, 81435684, 80021955, 80174608,
+      70205012,
+    ],
+  },
+  {
+    title: "New Releases",
+    titles: [
+      80186863, 81008305, 80242342, 80210767, 70208599, 80222802, 80994082,
+      70143825,
+    ],
+  },
+
+  {
+    title: "TV Shows",
+    titles: [
+      80063224, 80128275, 80218938, 80213025, 70153373, 80049832, 80191036,
+      80160037, 80007945,
+    ],
+  },
+  {
+    title: "Thrillers",
+    titles: [
+      70264888, 80117552, 80114855, 80227574, 80231373, 80068327, 81271131,
+    ],
+  },
+  {
+    title: "Romantic Shows",
+    titles: [80232398, 70181730, 80996601, 80211627, 70021648],
+  },
+  {
+    title: "My List",
+    titles: [80007945, 70143825, 81271131, 70021648, 80990849],
+  },
+];
+
+const lolomo = {
+  home: lolomo__home,
+  list: lolomo__list,
+};
 
 export default lolomo;
