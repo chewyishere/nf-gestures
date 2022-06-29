@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, Reorder } from "framer-motion";
 import { lolomo } from "data/app";
 import { opacityV } from "utils/variants";
 import { gestures } from "gestures/gestures";
@@ -38,6 +39,7 @@ export default function Home({ currentDemoIdx }) {
         )}
       >
         {gesture.page === "list" ? <ProfileNav /> : <Billboard />}
+
         <div className="lolomo flex-col">
           {lolomo[gesture.page].map((_l, _idx) => (
             <DynamicGestureRow

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { useSprings, animated, config } from "@react-spring/web";
+import { useSprings, useSpring, animated, config } from "@react-spring/web";
 import { useDrag } from "@use-gesture/react";
 import { clamp } from "lodash";
 import { Edit } from "common/icons";
@@ -39,12 +39,10 @@ const fnX = (
 };
 
 export default function LongPressReorder({ header, row, rowIdx, ClassNames }) {
+  const rowRef = useRef();
+
   const { focusedRowIdx, setFocsuedRowIdx, setRowEditingMode, rowEditingMode } =
     useUIContext();
-
-  useEffect(() => {
-    //console.log("re-render");
-  }, []);
 
   const canDrag = rowEditingMode && rowIdx === focusedRowIdx;
 
@@ -81,6 +79,16 @@ export default function LongPressReorder({ header, row, rowIdx, ClassNames }) {
 
       //DRAG
       if (canDrag) {
+        //  console.log(state.xy[0]);
+        //FOR MOBILE 90
+        // if (state.xy[0] < 500) {
+        //   // console.log("going left");
+        //   rowRef.current.scrollTo(0, 0);
+        //   console.log(rowRef.current.scrollLeft);
+        // }
+        // if (state.xy[0] > 320) {
+        //   console.log("going right");
+        // }
         api.start(fnX(newOrder, active, originalIndex, curIndex, x, canDrag));
         // Feed springs new style data, they'll animate the view without causing a single render
       }
@@ -101,7 +109,7 @@ export default function LongPressReorder({ header, row, rowIdx, ClassNames }) {
         {header}
         <Edit className="lolomo-row__label__edit" />
       </span>
-      <div className={"lolomo__row__titles"}>
+      <div ref={rowRef} className="lolomo__row__titles">
         {springs.map(({ zIndex, shadow, x, scale }, i) => (
           <animated.div
             {...bind(i)}
