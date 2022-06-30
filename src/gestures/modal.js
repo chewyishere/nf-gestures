@@ -47,7 +47,8 @@ export default function Modal() {
     >
       <div
         className="modal__overlay"
-        onClick={() => {
+        onClick={(e) => {
+          e.preventDefault();
           setShowModal(false);
         }}
       />
