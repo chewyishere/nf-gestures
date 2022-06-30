@@ -2,6 +2,7 @@ import { useState, useMemo, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useUIContext } from "contexts/ui";
 import { opacityV } from "utils/variants";
+import { Close } from "common/icons";
 import TitleCard from "common/titlecard";
 import { ActionAdd } from "common/actions";
 import "./modal.scss";
@@ -42,16 +43,19 @@ export default function Modal() {
       variants={opacityV}
       initial="hidden"
       animate="visible"
-      exit="hiddne"
+      exit="hidden"
       className="modal flex-center"
     >
       <div
-        className="modal__overlay"
+        className="modal__close"
         onClick={(e) => {
           e.preventDefault();
           setShowModal(false);
         }}
-      />
+      >
+        <Close />
+      </div>
+      <div className="modal__overlay" />
       <motion.div
         drag
         dragConstraints={{ left: -100, right: 100, top: -250, bottom: 250 }}

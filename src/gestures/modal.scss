@@ -19,6 +19,12 @@
     height: 50px;
   }
 
+  &__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+
   .dragging-title {
     position: absolute;
     inset: auto !important;
