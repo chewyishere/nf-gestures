@@ -28,6 +28,7 @@ const demos = [
   {
     title: "Gyro: Up Side Down (WIP)",
     component: GyroUpSideDown,
+    debug: true,
     id: "gyro-upsidedown",
     page: "home",
   },

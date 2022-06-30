@@ -58,6 +58,10 @@
       background: black;
       height: 200px;
       width: 100%;
+
+      &__debug {
+        margin-left: 10px;
+      }
     }
 
     li {

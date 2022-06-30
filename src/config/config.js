@@ -6,7 +6,7 @@ import { Close, Menu } from "common/icons";
 import "./config.scss";
 
 export default function Config({ currentDemoIdx, setCurrentDemoIdx }) {
-  const { reset } = useUIContext();
+  const { reset, showDebug, setShowDebug } = useUIContext();
   const [isHiding, setIsHiding] = useState();
 
   return (
@@ -47,6 +47,14 @@ export default function Config({ currentDemoIdx, setCurrentDemoIdx }) {
             >
               {_d.title}
             </a>
+            {_d.debug && (
+              <button
+                className="config__list__debug"
+                onClick={() => setShowDebug(!showDebug)}
+              >
+                {showDebug ? "hide" : "show"} debug
+              </button>
+            )}
           </li>
         ))}
       </ul>

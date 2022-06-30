@@ -36,6 +36,14 @@ const UIWrapper = ({ children }) => {
     });
   };
 
+  const setShowDebug = (value) => {
+    updateUI((prevState) => {
+      const newState = { ...prevState };
+      newState.showDebug = value;
+      return newState;
+    });
+  };
+
   const reset = () => {
     updateUI((prevState) => {
       return defaultState;
@@ -47,10 +55,12 @@ const UIWrapper = ({ children }) => {
     focusedRowIdx: 0,
     focusedTitle: {},
     showModal: false,
+    showDebug: false,
     setRowEditingMode,
     setFocsuedRowIdx,
     setFocusedTitle,
     setShowModal,
+    setShowDebug,
     reset,
   };
 
