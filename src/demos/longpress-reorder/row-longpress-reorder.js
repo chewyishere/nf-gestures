@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
-import { useSprings, useSpring, animated, config } from "@react-spring/web";
+import { useRef } from "react";
+import { useSprings, animated, config } from "@react-spring/web";
 import { useDrag } from "@use-gesture/react";
 import { clamp } from "lodash";
 import { Edit } from "common/icons";
@@ -7,7 +7,7 @@ import { useUIContext } from "contexts/ui";
 import swap from "lodash-move";
 import TitleCard from "common/titlecard";
 import classNames from "classnames";
-import useLongPress from "hooks/useLongPress";
+import useLongPress from "hooks/use-long-press";
 
 const TITLE_GAP_X = 120;
 
@@ -65,7 +65,6 @@ export default function LongPressReorder({ header, row, rowIdx, ClassNames }) {
 
   const order = useRef(row.map((_, index) => index)); // Store indicies as a local ref, this represents the item order
   const [springs, api] = useSprings(row.length, fnX(order.current)); // Create springs, each corresponds to an item, controlling its transform, scale, etc.
-  // const [springs, api] = useSprings(row.length, fnScale(order.current)); // Create springs, each corresponds to an item, controlling its transform, scale, etc.
 
   const bind = useDrag(
     ({ args: [originalIndex], active, movement: [x, y], ...state }) => {

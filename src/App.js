@@ -1,13 +1,16 @@
 import { useState } from "react";
-import { useUIContext } from "contexts/ui";
-import Home from "pages/home";
+import demos from "demos/demos";
+import { lolomo } from "data/app";
 import Config from "config/config";
-import Modal from "gestures/modal";
 
 import "./App.scss";
 
+const DynamicDemo = ({ demo }) => {
+  const Demo = demo.component;
+  return <Demo ClassNames={demo.id} lolomos={lolomo[demo.page]} />;
+};
+
 const App = () => {
-  const { showModal } = useUIContext();
   const [currentDemoIdx, setCurrentDemoIdx] = useState(0);
 
   return (
@@ -17,8 +20,7 @@ const App = () => {
         setCurrentDemoIdx={setCurrentDemoIdx}
       />
       <div className="app__mobile__wrapper">
-        <Home currentDemoIdx={currentDemoIdx} />
-        {showModal && <Modal />}
+        <DynamicDemo demo={demos[currentDemoIdx]} />
       </div>
     </div>
   );

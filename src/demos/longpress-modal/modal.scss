@@ -1,9 +1,9 @@
-@import "./gestures-animations.scss";
+@import "styles/animations.scss";
 
 .modal {
   width: var(--appWidth);
   height: var(--appHeight);
-  z-index: 10;
+  z-index: 11;
   position: absolute;
 
   &__overlay {

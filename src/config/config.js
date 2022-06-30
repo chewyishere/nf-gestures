@@ -1,6 +1,6 @@
 import { useState } from "react";
 import classNames from "classnames";
-import { gestures } from "gestures/gestures";
+import demos from "demos/demos";
 import { useUIContext } from "contexts/ui";
 import { Close, Menu } from "common/icons";
 import "./config.scss";
@@ -27,11 +27,11 @@ export default function Config({ currentDemoIdx, setCurrentDemoIdx }) {
 
       <ul className="config__list">
         <div className="config__header">
-          <p className="subtitle-heavy">Gesture Demos </p>
+          <p className="subtitle-heavy">Demos </p>
           <hr />
         </div>
 
-        {gestures.map((_d, _idx) => (
+        {demos.map((_d, _idx) => (
           <li
             key={`list-${_idx}`}
             className={classNames("body-small", {
@@ -42,6 +42,7 @@ export default function Config({ currentDemoIdx, setCurrentDemoIdx }) {
               onClick={() => {
                 reset();
                 setCurrentDemoIdx(_idx);
+                setIsHiding(true);
               }}
             >
               {_d.title}

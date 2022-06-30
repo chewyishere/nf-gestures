@@ -4,14 +4,14 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useUIContext } from "contexts/ui";
 import TitleCard from "common/titlecard";
 import classNames from "classnames";
-import useLongPress from "hooks/useLongPress";
+import useLongPress from "hooks/use-long-press";
 
 const TITLE_W = 120;
 
-export default function LongPressRemove({ header, row, rowIdx, ClassNames }) {
+export default function RowLongPressRemove({ row, rowIdx, ClassNames }) {
   const { focusedRowIdx, setFocsuedRowIdx, setRowEditingMode, rowEditingMode } =
     useUIContext();
-  const [items, setItems] = useState(row);
+  const [items, setItems] = useState(row.titles);
   const isActive = rowEditingMode && rowIdx === focusedRowIdx;
 
   const onLongPress = (e) => {
@@ -48,7 +48,7 @@ export default function LongPressRemove({ header, row, rowIdx, ClassNames }) {
       })}
     >
       <span className="lolomo__row__label subtitle-heavy">
-        {header}
+        {row.title}
         <Edit className="lolomo-row__label__edit" />
       </span>
       <div className="lolomo__row__titles">

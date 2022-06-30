@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 import { useUIContext } from "contexts/ui";
 import TitleCard from "common/titlecard";
 import classNames from "classnames";
-import useLongPress from "hooks/useLongPress";
+import useLongPress from "hooks/use-long-press";
 
 const TITLE_W = 120;
 
-export default function LongPressModal({ header, row, rowIdx, ClassNames }) {
+export default function RowLongPressModal({ row, rowIdx, ClassNames }) {
   const { focusedTitle, setFocusedTitle, setShowModal } = useUIContext();
 
   const onLongPress = (e, id, title, boundingBox) => {
@@ -24,11 +24,11 @@ export default function LongPressModal({ header, row, rowIdx, ClassNames }) {
   return (
     <div className={classNames("flex-col lolomo__row", ClassNames)}>
       <span className="lolomo__row__label subtitle-heavy">
-        {header}
+        {row.title}
         <Edit className="lolomo-row__label__edit" />
       </span>
       <div className="lolomo__row__titles">
-        {row.map((item, i) => (
+        {row.titles.map((item, i) => (
           <AnimatedTitle
             key={`${rowIdx}-${item}`}
             item={item}
