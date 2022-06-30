@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { opacityV } from "utils/variants";
 import { IOSStatus, Nav } from "common/utlities";
@@ -8,33 +7,6 @@ import LolomoRow from "common/lolomo-row";
 import "./upsidedown.scss";
 
 export default function GyroUpSideDown({ ClassNames, lolomos }) {
-  const [log, setLog] = useState();
-
-  useEffect(() => {
-    return () => window.removeEventListener("deviceorientation", logIt);
-  }, []);
-
-  const logIt = (e) => {
-    let _l =
-      "alpha:" +
-      e.alpha.toFixed(2) +
-      " beta:" +
-      e.beta.toFixed(2) +
-      " gamma:" +
-      e.gamma.toFixed(2);
-    setLog(_l);
-  };
-
-  function requestOrientationPermission() {
-    DeviceOrientationEvent.requestPermission()
-      .then((response) => {
-        if (response === "granted") {
-          window.addEventListener("deviceorientation", logIt);
-        }
-      })
-      .catch(console.error);
-  }
-
   return (
     <motion.div
       className="home screen"
@@ -45,14 +17,8 @@ export default function GyroUpSideDown({ ClassNames, lolomos }) {
     >
       <IOSStatus />
       <Nav />
-      <button
-        className="permission center-abs"
-        onClick={requestOrientationPermission}
-      >
-        Request orientation permission
-      </button>
+
       <div className={`home__container ${ClassNames}`}>
-        <p className="debug">{log}</p>
         <BillboardUpSideDown />
 
         {/* <div className="lolomo flex-col">

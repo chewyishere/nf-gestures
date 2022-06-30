@@ -1,9 +1,11 @@
 .debug {
   position: absolute;
   z-index: 9;
-  top: 200px;
+  top: 130px;
   left: 50%;
   transform: translateX(-50%);
+  font-size: 13px;
+  width: 100%;
 }
 
 .permission {
