@@ -11,19 +11,25 @@ export default function GyroUpSideDown({ ClassNames, lolomos }) {
   const [log, setLog] = useState();
 
   useEffect(() => {
-    window.addEventListener("deviceorientation", function (event) {
-      let _l = event.alpha + " : " + event.beta + " : " + event.gamma;
-      setLog(_l);
-    });
+    return () => window.removeEventListener("deviceorientation", logIt);
   }, []);
+
+  const logIt = (e) => {
+    let _l =
+      "alpha:" +
+      e.alpha.toFixed(2) +
+      " beta:" +
+      e.beta.toFixed(2) +
+      " gamma:" +
+      e.gamma.toFixed(2);
+    setLog(_l);
+  };
 
   function requestOrientationPermission() {
     DeviceOrientationEvent.requestPermission()
       .then((response) => {
-        if (response == "granted") {
-          window.addEventListener("deviceorientation", (e) => {
-            // do something with e
-          });
+        if (response === "granted") {
+          window.addEventListener("deviceorientation", logIt);
         }
       })
       .catch(console.error);

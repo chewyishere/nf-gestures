@@ -26,7 +26,7 @@ const demos = [
     page: "home",
   },
   {
-    title: "Gyro: Up Side Down",
+    title: "Gyro: Up Side Down (WIP)",
     component: GyroUpSideDown,
     id: "gyro-upsidedown",
     page: "home",
