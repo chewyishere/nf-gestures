@@ -1,8 +1,6 @@
-import classNames from "classnames";
-import { motion } from "framer-motion";
+import { motion, useTransform, useMotionValue } from "framer-motion";
 import { useState, useEffect } from "react";
 import { home } from "data/app";
-import { nav } from "data/app";
 import { useUIContext } from "contexts/ui";
 
 const Debug = ({ requestOrientationPermission, log }) => {
@@ -20,8 +18,14 @@ const Debug = ({ requestOrientationPermission, log }) => {
 };
 export default function BillboardUpSideDown() {
   const { showDebug } = useUIContext();
-  const [rotate, setRotate] = useState(100);
+  // const [rotate, setRotate] = useState(0);
   const [log, setLog] = useState("alpha:" + 360 + " beta:" + 0 + " gamma:" + 0);
+
+  const rotate = useMotionValue(0);
+  const input = [0, 180, 360];
+  const y = useTransform(rotate, input, [0, -100, 0]);
+  const opacity_down = useTransform(rotate, input, [0, 1, 0]);
+  const opacity_up = useTransform(rotate, input, [1, 0, 1]);
 
   useEffect(() => {
     return () => window.removeEventListener("deviceorientation", logIt);
@@ -46,7 +50,8 @@ export default function BillboardUpSideDown() {
       " gamma:" +
       e.gamma.toFixed(2);
     setLog(_l);
-    setRotate(e.alpha);
+    rotate.set(e.alpha);
+    console.log(rotate);
   };
 
   return (
@@ -71,17 +76,27 @@ export default function BillboardUpSideDown() {
         ))}
       </div>
       <motion.div
-        className="billboard__rotator"
-        animate={{ rotate: rotate }}
-        transition={{
-          ease: "easeOut",
-          duration: 0.1,
-        }}
+        className="billboard__rotator billboard__bg"
+        style={{ rotate, y }}
       >
-        <img
-          className="billboard__bg"
+        <motion.img
+          className="billboard__rotator__up"
           src={home.billboardSrc}
           alt="billboard"
+          draggable="false"
+          style={{ opacity: opacity_up }}
+        />
+        <motion.img
+          className="billboard__rotator__down"
+          src={home.billboardDownSrc}
+          alt="down"
+          draggable="false"
+          style={{ opacity: opacity_down }}
+        />
+        <img
+          className="billboard__rotator__front"
+          src={home.billboardFrontSrc}
+          alt="front"
           draggable="false"
         />
       </motion.div>

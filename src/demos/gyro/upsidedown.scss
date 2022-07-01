@@ -18,5 +18,15 @@
 }
 
 .billboard__rotator {
-  transform-origin: 40% 40%;
+  transform-origin: 50% 50%;
+  position: absolute;
+}
+
+.billboard__rotator__up,
+.billboard__rotator__front,
+.billboard__rotator__down {
+  position: absolute;
+  transform: translate3d(-50%, -50%, 0);
+  left: 50%;
+  top: 50%;
 }

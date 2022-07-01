@@ -53,6 +53,8 @@ const home = {
   navSrc: `${process.env.PUBLIC_URL}/images/home/nav.png`,
   filters: ["TV Show", "Movies", "Genres"],
   billboardSrc: `${process.env.PUBLIC_URL}/images/home/billboard.png`,
+  billboardFrontSrc: `${process.env.PUBLIC_URL}/images/home/billboard_front.png`,
+  billboardDownSrc: `${process.env.PUBLIC_URL}/images/home/billboard_down.png`,
   billboardInfoSrc: `${process.env.PUBLIC_URL}/images/home/billboard_info.png`,
 };
 
