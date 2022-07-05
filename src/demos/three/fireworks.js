@@ -346,7 +346,7 @@ export default function Fireworks({ count }) {
   return (
     <mesh ref={mesh} receiveShadow>
       <Plane
-        args={[50, 30]}
+        args={[50, 35]}
         position={[0, 20, 0]}
         rotation={[0, 0, 0]}
         onClick={launchFireWorks}

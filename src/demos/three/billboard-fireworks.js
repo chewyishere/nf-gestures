@@ -30,8 +30,8 @@ export default function BillboardFireworks() {
         <Image
           url={home.billboardParticle}
           transparent
-          position={[0, 5, 0]}
-          scale={50}
+          position={[0, 2, 0]}
+          scale={[45, 60]}
         />
       </Canvas>
     </>

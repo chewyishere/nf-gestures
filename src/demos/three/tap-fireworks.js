@@ -8,7 +8,7 @@ import LolomoRow from "common/lolomo-row";
 export default function TapFireworks({ ClassNames, lolomos }) {
   return (
     <motion.div
-      className="home screen"
+      className={`home screen ${ClassNames}`}
       variants={opacityV}
       initial="hidden"
       animate="visible"
@@ -17,7 +17,7 @@ export default function TapFireworks({ ClassNames, lolomos }) {
       <IOSStatus />
       <Nav />
 
-      <div className={`home__container ${ClassNames}`}>
+      <div className="home__container">
         <div className="billboard flex-center fireworks">
           <BillboardFireworks />
           <div className="home__nav flex-col">
@@ -33,7 +33,6 @@ export default function TapFireworks({ ClassNames, lolomos }) {
               <span key={_f}>{_f}</span>
             ))}
           </div>
-
           <div className="billboard__info">
             <img
               className="billboard__info__title"
