@@ -51,11 +51,10 @@ export default function BillboardUpSideDown() {
       e.gamma.toFixed(2);
     setLog(_l);
     rotate.set(e.alpha);
-    console.log(rotate);
   };
 
   return (
-    <div className="billboard flex-center">
+    <div className="upsidedown billboard flex-center">
       {showDebug && (
         <Debug
           requestOrientationPermission={requestOrientationPermission}

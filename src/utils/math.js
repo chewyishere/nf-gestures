@@ -3,4 +3,8 @@ function map_range(value, low1, high1, low2, high2) {
   return _v > high2 ? high2 : _v < low2 ? low2 : _v;
 }
 
-export { map_range };
+function getRandomNum(max = 0, min = 0) {
+  return Math.floor(Math.random() * (max + 1 - min)) + min;
+}
+
+export { map_range, getRandomNum };

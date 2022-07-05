@@ -1,7 +1,8 @@
-import LongPressRemove from "./longpress-remove/longpress-remove";
-import LongPressReorder from "./longpress-reorder/longpress-reorder";
-import LongPressModal from "./longpress-modal/longpress-modal";
+import LongPressRemove from "./longpress/longpress-remove";
+import LongPressReorder from "./longpress/longpress-reorder";
+import LongPressModal from "./longpress/longpress-modal";
 import GyroUpSideDown from "./gyro/gyro-upsidedown";
+import TapFireworks from "./three/tap-fireworks";
 
 import "./demos.scss";
 import "./home.scss";
@@ -26,10 +27,16 @@ const demos = [
     page: "home",
   },
   {
-    title: "Gyro: Up Side Down (WIP)",
+    title: "Gyro: Up Side Down (Mobile Only)",
     component: GyroUpSideDown,
     debug: true,
     id: "gyro-upsidedown",
+    page: "home",
+  },
+  {
+    title: "Tap: Fireworks",
+    component: TapFireworks,
+    id: "tap-fireworks",
     page: "home",
   },
 ];

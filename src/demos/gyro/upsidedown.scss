@@ -17,6 +17,15 @@
   transform: translateX(-50%);
 }
 
+.gyro-upsidedown {
+  .billboard__info {
+    bottom: 10px;
+  }
+  .lolomo {
+    margin-top: 30px;
+  }
+}
+
 .billboard__rotator {
   transform-origin: 50% 50%;
   position: absolute;

@@ -17,6 +17,7 @@
   top: 0;
   width: 100%;
   background: #0f0f0f;
+  pointer-events: none;
 
   &__col {
     position: absolute;
@@ -26,6 +27,7 @@
     top: 60px;
     gap: 32px;
     z-index: 1;
+    pointer-events: none;
   }
 }
 

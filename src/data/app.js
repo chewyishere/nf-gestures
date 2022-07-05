@@ -56,6 +56,7 @@ const home = {
   billboardFrontSrc: `${process.env.PUBLIC_URL}/images/home/billboard_front.png`,
   billboardDownSrc: `${process.env.PUBLIC_URL}/images/home/billboard_down.png`,
   billboardInfoSrc: `${process.env.PUBLIC_URL}/images/home/billboard_info.png`,
+  billboardParticle: `${process.env.PUBLIC_URL}/images/home/billboard_particle.png`,
 };
 
 const allIds = lolomo.list.map((_l) => _l.titles).flat();

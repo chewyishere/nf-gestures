@@ -21,11 +21,11 @@ export default function GyroUpSideDown({ ClassNames, lolomos }) {
       <div className={`home__container ${ClassNames}`}>
         <BillboardUpSideDown />
 
-        {/* <div className="lolomo flex-col">
+        <div className="lolomo flex-col">
           {lolomos.map((_l, _idx) => (
             <LolomoRow key={`${_idx}-${_l.title}`} row={_l} />
           ))}
-        </div> */}
+        </div>
       </div>
     </motion.div>
   );
