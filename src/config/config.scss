@@ -60,11 +60,11 @@
     &__list {
       top: 0px;
       background: black;
-      height: 200px;
       width: 100%;
+      padding-bottom: 20px;
 
       &__debug {
-        display: block;
+        display: inline-block;
         margin-left: 10px;
       }
     }
