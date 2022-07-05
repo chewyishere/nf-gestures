@@ -27,12 +27,7 @@ export default function BillboardFireworks() {
       >
         <pointLight distance={100} intensity={4} color="white" />
         <Fireworks count={isMobile ? 200 : 200} />
-        <Image
-          url={home.billboardParticle}
-          transparent
-          position={[0, 2, 0]}
-          scale={[45, 60]}
-        />
+        <Image url={home.billboardParticle} position={[0, 0, 0]} scale={45} />
       </Canvas>
     </>
   );
