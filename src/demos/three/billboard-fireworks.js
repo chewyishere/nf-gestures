@@ -26,7 +26,7 @@ export default function BillboardFireworks() {
         }}
       >
         <pointLight distance={100} intensity={4} color="white" />
-        <Fireworks count={isMobile ? 100 : 200} />
+        <Fireworks count={isMobile ? 200 : 200} />
         <Image
           url={home.billboardParticle}
           transparent

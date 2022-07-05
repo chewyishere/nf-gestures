@@ -117,7 +117,7 @@ const getPointMesh = (num, vels, type, ParticleSize) => {
   if (rgbTypeDice > 0.66) {
     rgbType = "red";
   } else if (rgbTypeDice > 0.33) {
-    rgbType = "green";
+    rgbType = "yellow";
   } else {
     rgbType = "blue";
   }
@@ -148,8 +148,8 @@ const getPointMesh = (num, vels, type, ParticleSize) => {
           case "red":
             colors.push(singleColor, 0.1, 0.1, 1.0);
             break;
-          case "green":
-            colors.push(0.1, singleColor, 0.1, 1.0);
+          case "yellow":
+            colors.push(singleColor, singleColor, 0.1, 1.0);
             break;
           case "blue":
             colors.push(0.1, 0.1, singleColor, 1.0);
