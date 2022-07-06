@@ -1,6 +1,6 @@
 import { home } from "data/app";
 import * as THREE from "three";
-import { useState, useCallback, useRef, Suspense, useEffect } from "react";
+import { useCallback, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import Fireworks from "./fireworks";
 import { Image } from "@react-three/drei";
@@ -26,7 +26,7 @@ export default function BillboardFireworks() {
         }}
       >
         <pointLight distance={100} intensity={4} color="white" />
-        <Fireworks count={isMobile ? 200 : 200} />
+        <Fireworks count={200} />
         <Image url={home.billboardParticle} position={[0, 0, 0]} scale={45} />
       </Canvas>
     </>

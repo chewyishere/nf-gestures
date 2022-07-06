@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import classNames from "classnames";
 import demos from "demos/demos";
 import { useUIContext } from "contexts/ui";
@@ -38,15 +39,15 @@ export default function Config({ currentDemoIdx, setCurrentDemoIdx }) {
               isActive: currentDemoIdx === _idx,
             })}
           >
-            <a
+            <Link
+              to={`/${_d.id}`}
               onClick={() => {
                 reset();
-                setCurrentDemoIdx(_idx);
                 setIsHiding(true);
               }}
             >
               {_d.title}
-            </a>
+            </Link>
             {_d.debug && (
               <button
                 className="config__list__debug"

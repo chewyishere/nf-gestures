@@ -1,4 +1,3 @@
-import { useState } from "react";
 import demos from "demos/demos";
 import { lolomo } from "data/app";
 import Config from "config/config";
@@ -10,17 +9,12 @@ const DynamicDemo = ({ demo }) => {
   return <Demo ClassNames={demo.id} lolomos={lolomo[demo.page]} />;
 };
 
-const App = () => {
-  const [currentDemoIdx, setCurrentDemoIdx] = useState(0);
-
+const App = ({ demoIdx = 0 }) => {
   return (
     <div className="app">
-      <Config
-        currentDemoIdx={currentDemoIdx}
-        setCurrentDemoIdx={setCurrentDemoIdx}
-      />
+      <Config />
       <div className="app__mobile__wrapper">
-        <DynamicDemo demo={demos[currentDemoIdx]} />
+        <DynamicDemo demo={demos[demoIdx]} />
       </div>
     </div>
   );
