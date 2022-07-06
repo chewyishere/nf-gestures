@@ -31,13 +31,20 @@
 
   li {
     list-style: none;
-    color: rgba(0, 0, 0, 0.7);
     margin-bottom: 5px;
-    &:hover {
-      color: rgba(255, 255, 255, 1);
-    }
+
     &.isActive {
-      color: var(--nfBrandRed);
+      a {
+        color: var(--nfBrandRed);
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: rgba(0, 0, 0, 0.7);
+      &:hover {
+        color: rgba(255, 255, 255, 1);
+      }
     }
   }
 
@@ -61,7 +68,7 @@
       top: 0px;
       background: black;
       width: 100%;
-      padding-bottom: 20px;
+      padding: 10px 20px;
 
       &__debug {
         display: inline-block;
@@ -69,9 +76,10 @@
       }
     }
 
-    li {
+    li > a {
       color: rgba(255, 255, 255, 1);
     }
+
     &__mobile__cta {
       display: flex;
       justify-content: center;

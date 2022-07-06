@@ -44,6 +44,14 @@ const UIWrapper = ({ children }) => {
     });
   };
 
+  const setCurrentDemo = (value) => {
+    updateUI((prevState) => {
+      const newState = { ...prevState };
+      newState.currentDemo = value;
+      return newState;
+    });
+  };
+
   const reset = () => {
     updateUI((prevState) => {
       return defaultState;
@@ -52,6 +60,7 @@ const UIWrapper = ({ children }) => {
 
   const defaultState = {
     rowEditingMode: false,
+    currentDemo: "longpress-remove",
     focusedRowIdx: 0,
     focusedTitle: {},
     showModal: false,
@@ -61,6 +70,7 @@ const UIWrapper = ({ children }) => {
     setFocusedTitle,
     setShowModal,
     setShowDebug,
+    setCurrentDemo,
     reset,
   };
 

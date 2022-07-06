@@ -1,14 +1,23 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
 import demos from "demos/demos";
 import { useUIContext } from "contexts/ui";
 import { Close, Menu } from "common/icons";
 import "./config.scss";
 
-export default function Config({ currentDemoIdx, setCurrentDemoIdx }) {
-  const { reset, showDebug, setShowDebug } = useUIContext();
+export default function Config() {
+  let navigate = useNavigate();
+  const { reset, showDebug, setShowDebug, currentDemo, setCurrentDemo } =
+    useUIContext();
   const [isHiding, setIsHiding] = useState();
+
+  const goTo = (id) => {
+    reset();
+    setIsHiding(true);
+    setCurrentDemo(id);
+    navigate(`/${id}`);
+  };
 
   return (
     <div className={classNames("config", { isHiding: isHiding })}>
@@ -36,22 +45,23 @@ export default function Config({ currentDemoIdx, setCurrentDemoIdx }) {
           <li
             key={`list-${_idx}`}
             className={classNames("body-small", {
-              isActive: currentDemoIdx === _idx,
+              isActive: currentDemo === _d.id,
             })}
           >
-            <Link
-              to={`/${_d.id}`}
+            <a
               onClick={() => {
-                reset();
-                setIsHiding(true);
+                goTo(_d.id);
               }}
             >
               {_d.title}
-            </Link>
+            </a>
             {_d.debug && (
               <button
                 className="config__list__debug"
-                onClick={() => setShowDebug(!showDebug)}
+                onClick={() => {
+                  setIsHiding(true);
+                  setShowDebug(!showDebug);
+                }}
               >
                 {showDebug ? "hide" : "show"} debug
               </button>
