@@ -13,18 +13,23 @@
     transition: transform 200ms ease-out;
 
     &__debug {
-      display: none;
+      display: inline-block;
+      margin-left: 10px;
+      border: none;
+      border-radius: 3px;
+      font-size: 12px !important;
     }
   }
 
   &__header {
     margin-bottom: 20px;
-    width: 132px;
+
     p {
       margin-bottom: 0;
+      width: 200px;
     }
     hr {
-      margin-top: 0;
+      margin-top: 10px;
       border-style: dashed;
     }
   }
@@ -69,11 +74,6 @@
       background: black;
       width: 100%;
       padding: 10px 20px;
-
-      &__debug {
-        display: inline-block;
-        margin-left: 10px;
-      }
     }
 
     li > a {

@@ -37,7 +37,17 @@ export default function Config() {
 
       <ul className="config__list">
         <div className="config__header">
-          <p className="subtitle-heavy">Demos </p>
+          <p className="subtitle-heavy">
+            Demos
+            <button
+              className="config__list__debug body-small"
+              onClick={() => {
+                setShowDebug(!showDebug);
+              }}
+            >
+              {showDebug ? "hide" : "show"} mobile debug
+            </button>{" "}
+          </p>
           <hr />
         </div>
 
@@ -55,17 +65,6 @@ export default function Config() {
             >
               {_d.title}
             </a>
-            {_d.debug && (
-              <button
-                className="config__list__debug"
-                onClick={() => {
-                  setIsHiding(true);
-                  setShowDebug(!showDebug);
-                }}
-              >
-                {showDebug ? "hide" : "show"} debug
-              </button>
-            )}
           </li>
         ))}
       </ul>

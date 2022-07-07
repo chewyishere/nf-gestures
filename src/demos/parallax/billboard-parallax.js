@@ -1,4 +1,4 @@
-import { useCallback, Suspense, useRef, useState } from "react";
+import { useCallback, Suspense, useRef, useState, useEffect } from "react";
 import * as THREE from "three";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Plane, useAspect, useTexture, Sparkles } from "@react-three/drei";
@@ -8,23 +8,15 @@ import midUrl from "./resources/billboard_front.png";
 import frontUrl from "./resources/billboard_info.png";
 import "./materials/layerMaterial";
 
-export default function BillboardParallax() {
+export default function BillboardParallax({ gyro }) {
   const dof = useRef();
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-  const mouse = useRef([0, 0]);
-
-  const onMouseMove = useCallback(
-    ({ clientX: x, clientY: y }) =>
-      (mouse.current = [x - window.innerWidth / 2, y - window.innerHeight / 2]),
-    []
-  );
 
   return (
     <>
       <Canvas
         pixelratio={Math.min(2, isMobile ? window.devicePixelRatio : 1)}
         camera={{ fov: 100, position: [0, 0, 30] }}
-        onMouseMove={onMouseMove}
         onCreated={({ gl }) => {
           gl.setClearColor(new THREE.Color("#020207"));
         }}
@@ -41,7 +33,7 @@ export default function BillboardParallax() {
           color={"#FF9978"}
         />
         <Suspense fallback={null}>
-          <Scene dof={dof} />
+          <Scene dof={dof} isMobile={isMobile} gyro={gyro} />
         </Suspense>
         <Effects ref={dof} />
       </Canvas>
@@ -49,7 +41,7 @@ export default function BillboardParallax() {
   );
 }
 
-const Scene = ({ dof }) => {
+const Scene = ({ dof, isMobile, gyro }) => {
   const textures = useTexture([bgUrl, midUrl, frontUrl]);
   const subject = useRef();
   const group = useRef();
@@ -87,20 +79,22 @@ const Scene = ({ dof }) => {
 
   useFrame((state, delta) => {
     dof.current.target = focus.lerp(subject.current.position, 1);
+    if (isMobile) {
+      movement.lerp(temp.set(gyro.x, state.mouse.y * 0.2, 0), 0.1);
+    } else {
+      movement.lerp(temp.set(state.mouse.x, state.mouse.y * 0.2, 0), 0.1);
+      group.current.rotation.x = THREE.MathUtils.lerp(
+        group.current.rotation.x,
+        state.mouse.y / 10,
+        0.1
+      );
 
-    movement.lerp(temp.set(state.mouse.x, state.mouse.y * 0.2, 0), 0.1);
-
-    group.current.rotation.x = THREE.MathUtils.lerp(
-      group.current.rotation.x,
-      state.mouse.y / 10,
-      0.1
-    );
-
-    group.current.rotation.y = THREE.MathUtils.lerp(
-      group.current.rotation.y,
-      -state.mouse.x / 10,
-      0.1
-    );
+      group.current.rotation.y = THREE.MathUtils.lerp(
+        group.current.rotation.y,
+        -state.mouse.x / 10,
+        0.1
+      );
+    }
 
     // layersRef.current[4].uniforms.time.value += delta;
   }, 1);

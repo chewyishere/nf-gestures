@@ -28,7 +28,7 @@ const demos = [
     page: "home",
   },
   {
-    title: "Gyro: Up Side Down (Mobile Only)",
+    title: "Gyro: Up Side Down",
     component: GyroUpSideDown,
     debug: true,
     id: "gyro-upsidedown",
@@ -45,6 +45,7 @@ const demos = [
     component: MoveParallax,
     id: "move-parallax",
     page: "home",
+    debug: true,
   },
 ];
 
