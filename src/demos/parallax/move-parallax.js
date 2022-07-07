@@ -4,6 +4,7 @@ import { opacityV } from "utils/variants";
 import { useUIContext } from "contexts/ui";
 import { home } from "data/app";
 import { IOSStatus, Nav } from "common/utlities";
+import { map_range } from "utils/math";
 import BillboardParallax from "./billboard-parallax";
 import LolomoRow from "common/lolomo-row";
 
@@ -49,7 +50,9 @@ export default function MoveParallax({ ClassNames, lolomos }) {
       " gamma:" +
       e.gamma.toFixed(2);
     setLog(_l);
-    gyro.current = { x: e.alpha.toFixed(1), y: e.beta.toFixed(1) };
+    let _x = map_range(e.gamma.toFixed(1), -30, 30, -1, 1);
+    let _y = map_range(e.beta.toFixed(1), 0, 70, -1, 1);
+    gyro.current = { x: _x, y: _y };
   };
 
   return (

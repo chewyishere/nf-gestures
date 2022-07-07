@@ -6,6 +6,7 @@ import Effects from "./effects";
 import bgUrl from "./resources/background.png";
 import midUrl from "./resources/billboard_front.png";
 import frontUrl from "./resources/billboard_info.png";
+
 import "./materials/layerMaterial";
 
 export default function BillboardParallax({ gyro }) {
@@ -79,24 +80,22 @@ const Scene = ({ dof, isMobile, gyro }) => {
 
   useFrame((state, delta) => {
     dof.current.target = focus.lerp(subject.current.position, 1);
-    if (isMobile) {
-      movement.lerp(temp.set(gyro.x, state.mouse.y * 0.2, 0), 0.1);
-    } else {
-      movement.lerp(temp.set(state.mouse.x, state.mouse.y * 0.2, 0), 0.1);
-      group.current.rotation.x = THREE.MathUtils.lerp(
-        group.current.rotation.x,
-        state.mouse.y / 10,
-        0.1
-      );
+    console.log(gyro);
+    let _x = isMobile ? gyro.x ?? 0 : state.mouse.x;
+    let _y = isMobile ? gyro.y ?? 0 : state.mouse.y;
 
-      group.current.rotation.y = THREE.MathUtils.lerp(
-        group.current.rotation.y,
-        -state.mouse.x / 10,
-        0.1
-      );
-    }
+    movement.lerp(temp.set(_x, _y * 0.2, 0), 0.1);
+    group.current.rotation.x = THREE.MathUtils.lerp(
+      group.current.rotation.x,
+      _y / 10,
+      0.1
+    );
 
-    // layersRef.current[4].uniforms.time.value += delta;
+    group.current.rotation.y = THREE.MathUtils.lerp(
+      group.current.rotation.y,
+      -_x / 10,
+      0.1
+    );
   }, 1);
 
   return (
