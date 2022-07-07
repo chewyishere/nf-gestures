@@ -3,7 +3,9 @@ import * as THREE from "three";
 import { useCallback, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import Fireworks from "./fireworks";
-import { Image, useAspect } from "@react-three/drei";
+import { useAspect, useTexture, Plane } from "@react-three/drei";
+import frontUrl from "./billboard_particle.png";
+import "./materials/layerMaterial";
 
 export default function BillboardFireworks() {
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
@@ -25,14 +27,24 @@ export default function BillboardFireworks() {
           gl.setClearColor(new THREE.Color("#020207"));
         }}
       >
-        <pointLight distance={100} intensity={4} color="white" />
-        <Front />
+        <fog attach="fog" args={["white", 100, 200]} />
+        <pointLight distance={10} intensity={4} color="white" />
+        <ambientLight intensity={10} />
+        <directionalLight />
         <Fireworks count={200} />
+        <Front />
       </Canvas>
     </>
   );
 }
 
 const Front = () => {
-  return <Image url={home.billboardParticle} position={[0, 0, 0]} scale={45} />;
+  const textr = useTexture(frontUrl);
+  const scale = useAspect(40, 80, 1);
+
+  return (
+    <Plane scale={scale} args={[1, 1]} position={[0, 0, 0]}>
+      <meshBasicMaterial attach="material" map={textr} transparent />
+    </Plane>
+  );
 };

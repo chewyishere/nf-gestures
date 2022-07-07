@@ -72,7 +72,7 @@ const Scene = ({ dof }) => {
       y: -15,
       ref: subject,
       scaleFactor: 1,
-      scale: useAspect(30, 25, 0.6),
+      scale: useAspect(34, 25, 0.55),
     },
     {
       texture: textures[2],
