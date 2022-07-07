@@ -3,7 +3,7 @@ import * as THREE from "three";
 import { useCallback, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import Fireworks from "./fireworks";
-import { Image } from "@react-three/drei";
+import { Image, useAspect } from "@react-three/drei";
 
 export default function BillboardFireworks() {
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
@@ -26,9 +26,13 @@ export default function BillboardFireworks() {
         }}
       >
         <pointLight distance={100} intensity={4} color="white" />
+        <Front />
         <Fireworks count={200} />
-        <Image url={home.billboardParticle} position={[0, 0, 0]} scale={45} />
       </Canvas>
     </>
   );
 }
+
+const Front = () => {
+  return <Image url={home.billboardParticle} position={[0, 0, 0]} scale={45} />;
+};

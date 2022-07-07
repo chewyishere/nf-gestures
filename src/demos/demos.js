@@ -2,7 +2,8 @@ import LongPressRemove from "./longpress/longpress-remove";
 import LongPressReorder from "./longpress/longpress-reorder";
 import LongPressModal from "./longpress/longpress-modal";
 import GyroUpSideDown from "./gyro/gyro-upsidedown";
-import TapFireworks from "./three/tap-fireworks";
+import TapFireworks from "./tap/tap-fireworks";
+import MoveParallax from "./parallax/move-parallax";
 
 import "./demos.scss";
 import "./home.scss";
@@ -37,6 +38,12 @@ const demos = [
     title: "Tap: Fireworks",
     component: TapFireworks,
     id: "tap-fireworks",
+    page: "home",
+  },
+  {
+    title: "Move: Parallax",
+    component: MoveParallax,
+    id: "move-parallax",
     page: "home",
   },
 ];

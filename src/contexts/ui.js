@@ -60,7 +60,7 @@ const UIWrapper = ({ children }) => {
 
   const defaultState = {
     rowEditingMode: false,
-    currentDemo: "longpress-remove",
+    currentDemo: "",
     focusedRowIdx: 0,
     focusedTitle: {},
     showModal: false,
