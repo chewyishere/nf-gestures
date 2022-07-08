@@ -6,7 +6,7 @@ import LolomoRow from "common/lolomo-row";
 
 import "./upsidedown.scss";
 
-export default function GyroUpSideDown({ ClassNames, lolomos }) {
+export default function UpSideDown({ ClassNames, lolomos }) {
   return (
     <motion.div
       className="home screen"

@@ -74,7 +74,7 @@ export default function Config() {
               setShowDebug(!showDebug);
             }}
           >
-            {showDebug ? "Hide" : "Show"} Values
+            {showDebug ? "Hide" : "Show"} GUI / Values
           </button>{" "}
           <button
             className="config__btn body-small"

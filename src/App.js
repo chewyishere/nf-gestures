@@ -1,7 +1,8 @@
+import { useEffect } from "react";
 import demos from "demos/demos";
 import { lolomo } from "data/app";
 import Config from "config/config";
-
+import { useUIContext } from "contexts/ui";
 import "./App.scss";
 
 const DynamicDemo = ({ demo }) => {
@@ -10,6 +11,14 @@ const DynamicDemo = ({ demo }) => {
 };
 
 const App = ({ demoIdx = 0 }) => {
+  const { showDebug } = useUIContext();
+
+  useEffect(() => {
+    showDebug
+      ? document.body.classList.add("showDebug")
+      : document.body.classList.remove("showDebug");
+  }, [showDebug]);
+
   return (
     <div className="app">
       <Config />

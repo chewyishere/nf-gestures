@@ -1,7 +1,6 @@
 import { useCallback, Suspense, useRef, useState, useEffect } from "react";
 import * as THREE from "three";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useUIContext } from "contexts/ui";
 import { Plane, useAspect, useTexture, Sparkles } from "@react-three/drei";
 import Effects from "./effects";
 import bgUrl from "./resources/background.png";

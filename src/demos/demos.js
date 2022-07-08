@@ -1,8 +1,8 @@
 import LongPressRemove from "./longpress/longpress-remove";
 import LongPressReorder from "./longpress/longpress-reorder";
 import LongPressModal from "./longpress/longpress-modal";
-import GyroUpSideDown from "./gyro/gyro-upsidedown";
 import TapFireworks from "./tap/tap-fireworks";
+import UpSideDown from "./upsidedown/upsidedown";
 import MoveParallax from "./parallax/move-parallax";
 
 import "./demos.scss";
@@ -28,22 +28,22 @@ const demos = [
     page: "home",
   },
   {
-    title: "Gyro: Up Side Down",
-    component: GyroUpSideDown,
-    debug: true,
-    id: "gyro-upsidedown",
-    page: "home",
-  },
-  {
     title: "Tap: Fireworks",
     component: TapFireworks,
     id: "tap-fireworks",
     page: "home",
   },
   {
-    title: "Move: Parallax",
+    title: "Orientation: Up Side Down",
+    component: UpSideDown,
+    debug: true,
+    id: "upsidedown",
+    page: "home",
+  },
+  {
+    title: "Orientation: Parallax",
     component: MoveParallax,
-    id: "move-parallax",
+    id: "parallax",
     page: "home",
     debug: true,
   },
