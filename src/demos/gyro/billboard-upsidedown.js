@@ -3,21 +3,9 @@ import { useState, useEffect } from "react";
 import { home } from "data/app";
 import { useUIContext } from "contexts/ui";
 
-const Debug = ({ requestOrientationPermission, log }) => {
-  return (
-    <div className="debug__modal">
-      <button
-        className="permission center-abs"
-        onClick={requestOrientationPermission}
-      >
-        Request permission
-      </button>
-      <p className="debug">{log}</p>
-    </div>
-  );
-};
 export default function BillboardUpSideDown() {
-  const { showDebug } = useUIContext();
+  const { showDebug, isPermissionGranded, setIsPermissionGranded } =
+    useUIContext();
   // const [rotate, setRotate] = useState(0);
   const [log, setLog] = useState("alpha:" + 360 + " beta:" + 0 + " gamma:" + 0);
 
@@ -36,6 +24,7 @@ export default function BillboardUpSideDown() {
       .then((response) => {
         if (response === "granted") {
           window.addEventListener("deviceorientation", logIt);
+          setIsPermissionGranded(true);
         }
       })
       .catch(console.error);
@@ -56,10 +45,17 @@ export default function BillboardUpSideDown() {
   return (
     <div className="upsidedown billboard flex-center">
       {showDebug && (
-        <Debug
-          requestOrientationPermission={requestOrientationPermission}
-          log={log}
-        />
+        <div className="debug__modal">
+          {!isPermissionGranded && (
+            <button
+              className="permission center-abs"
+              onClick={requestOrientationPermission}
+            >
+              Request permission
+            </button>
+          )}
+          <p className="debug">{log}</p>
+        </div>
       )}
       <div className="home__nav flex-col">
         <img

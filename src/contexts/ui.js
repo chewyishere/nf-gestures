@@ -52,6 +52,14 @@ const UIWrapper = ({ children }) => {
     });
   };
 
+  const setIsPermissionGranded = (value) => {
+    updateUI((prevState) => {
+      const newState = { ...prevState };
+      newState.isPermissionGranded = value;
+      return newState;
+    });
+  };
+
   const reset = () => {
     updateUI((prevState) => {
       return defaultState;
@@ -65,12 +73,14 @@ const UIWrapper = ({ children }) => {
     focusedTitle: {},
     showModal: false,
     showDebug: true,
+    isPermissionGranded: false,
     setRowEditingMode,
     setFocsuedRowIdx,
     setFocusedTitle,
     setShowModal,
     setShowDebug,
     setCurrentDemo,
+    setIsPermissionGranded,
     reset,
   };
 

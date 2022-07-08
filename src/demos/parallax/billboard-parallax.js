@@ -9,7 +9,7 @@ import frontUrl from "./resources/billboard_info.png";
 
 import "./materials/layerMaterial";
 
-export default function BillboardParallax({ gyro }) {
+export default function BillboardParallax() {
   const dof = useRef();
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
@@ -34,7 +34,7 @@ export default function BillboardParallax({ gyro }) {
           color={"#FF9978"}
         />
         <Suspense fallback={null}>
-          <Scene dof={dof} isMobile={isMobile} gyro={gyro} />
+          <Scene dof={dof} isMobile={isMobile} />
         </Suspense>
         <Effects ref={dof} />
       </Canvas>
@@ -42,7 +42,7 @@ export default function BillboardParallax({ gyro }) {
   );
 }
 
-const Scene = ({ dof, isMobile, gyro }) => {
+const Scene = ({ dof, isMobile }) => {
   const textures = useTexture([bgUrl, midUrl, frontUrl]);
   const subject = useRef();
   const group = useRef();
@@ -80,17 +80,14 @@ const Scene = ({ dof, isMobile, gyro }) => {
 
   useFrame((state, delta) => {
     dof.current.target = focus.lerp(subject.current.position, 1);
-    console.log(gyro);
-    let _x = isMobile ? gyro.x ?? 0 : state.mouse.x;
-    let _y = isMobile ? gyro.y ?? 0 : state.mouse.y;
-
+    let _x = isMobile ? state.mouse.x : state.mouse.x;
+    let _y = isMobile ? state.mouse.y : state.mouse.y;
     movement.lerp(temp.set(_x, _y * 0.2, 0), 0.1);
     group.current.rotation.x = THREE.MathUtils.lerp(
       group.current.rotation.x,
       _y / 10,
       0.1
     );
-
     group.current.rotation.y = THREE.MathUtils.lerp(
       group.current.rotation.y,
       -_x / 10,
