@@ -1,53 +1,12 @@
-import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { opacityV } from "utils/variants";
-import { useUIContext } from "contexts/ui";
 import { home } from "data/app";
 import { IOSStatus, Nav } from "common/utlities";
-import { map_range } from "utils/math";
+
 import BillboardParallax from "./billboard-parallax";
 import LolomoRow from "common/lolomo-row";
 
 export default function MoveParallax({ ClassNames, lolomos }) {
-  const { showDebug, isPermissionGranded, setIsPermissionGranded } =
-    useUIContext();
-  const [log, setLog] = useState("alpha:" + 360 + " beta:" + 0 + " gamma:" + 0);
-  const gyro = useRef({ x: 0, y: 0 });
-
-  useEffect(() => {
-    return () => window.removeEventListener("deviceorientation", logIt);
-  }, []);
-
-  function requestOrientationPermission() {
-    DeviceOrientationEvent.requestPermission()
-      .then((response) => {
-        if (response === "granted") {
-          window.addEventListener("deviceorientation", logIt);
-          setIsPermissionGranded(true);
-        }
-      })
-      .catch(console.error);
-  }
-
-  const logIt = (e) => {
-    let _l =
-      "alpha:" +
-      e.alpha.toFixed(2) +
-      " beta:" +
-      e.beta.toFixed(2) +
-      " gamma:" +
-      e.gamma.toFixed(2);
-    setLog(_l);
-
-    let _x = map_range(e.gamma.toFixed(1), -30, 30, -1, 1).toFixed(2);
-
-    console.log(_x);
-
-    // let _x = map_range(e.gamma.toFixed(1), -30, 30, -1, 1);
-    // let _y = map_range(e.beta.toFixed(1), 0, 70, -1, 1);
-    // gyro.current = { x: _x, y: _y };
-  };
-
   return (
     <motion.div
       className={`home screen ${ClassNames}`}
@@ -60,19 +19,6 @@ export default function MoveParallax({ ClassNames, lolomos }) {
       <Nav />
 
       <div className="home__container">
-        {showDebug && (
-          <div className="debug__modal">
-            {!isPermissionGranded && (
-              <button
-                className="permission center-abs"
-                onClick={requestOrientationPermission}
-              >
-                Request permission
-              </button>
-            )}
-            <p className="debug">{log}</p>
-          </div>
-        )}
         <div className="billboard flex-center sparks">
           <BillboardParallax />
           <div className="home__nav flex-col">

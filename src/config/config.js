@@ -19,6 +19,16 @@ export default function Config() {
     navigate(`/${id}`);
   };
 
+  function requestOrientationPermission() {
+    DeviceOrientationEvent.requestPermission()
+      .then((response) => {
+        if (response === "granted") {
+          window.addEventListener("deviceorientation");
+        }
+      })
+      .catch(console.error);
+  }
+
   return (
     <div className={classNames("config", { isHiding: isHiding })}>
       <div className="config__mobile__cta">
@@ -36,21 +46,8 @@ export default function Config() {
       </div>
 
       <ul className="config__list">
-        <div className="config__header">
-          <p className="subtitle-heavy">
-            Demos
-            <button
-              className="config__list__debug body-small"
-              onClick={() => {
-                setShowDebug(!showDebug);
-              }}
-            >
-              {showDebug ? "hide" : "show"} mobile debug
-            </button>{" "}
-          </p>
-          <hr />
-        </div>
-
+        <p className="subtitle-heavy header">Demos</p>
+        <hr />
         {demos.map((_d, _idx) => (
           <li
             key={`list-${_idx}`}
@@ -67,6 +64,25 @@ export default function Config() {
             </a>
           </li>
         ))}
+
+        <div className="config__debug">
+          <p className="subtitle-heavy header">Mobile Debug</p>
+          <hr />
+          <button
+            className="config__btn body-small"
+            onClick={() => {
+              setShowDebug(!showDebug);
+            }}
+          >
+            {showDebug ? "Hide" : "Show"} Values
+          </button>{" "}
+          <button
+            className="config__btn body-small"
+            onClick={requestOrientationPermission}
+          >
+            Activate Device Orientation
+          </button>
+        </div>
       </ul>
     </div>
   );

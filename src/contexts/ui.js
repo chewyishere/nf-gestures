@@ -72,7 +72,7 @@ const UIWrapper = ({ children }) => {
     focusedRowIdx: 0,
     focusedTitle: {},
     showModal: false,
-    showDebug: true,
+    showDebug: false,
     isPermissionGranded: false,
     setRowEditingMode,
     setFocsuedRowIdx,

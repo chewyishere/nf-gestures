@@ -1,11 +1,13 @@
 import { useCallback, Suspense, useRef, useState, useEffect } from "react";
 import * as THREE from "three";
 import { Canvas, useFrame } from "@react-three/fiber";
+import { useUIContext } from "contexts/ui";
 import { Plane, useAspect, useTexture, Sparkles } from "@react-three/drei";
 import Effects from "./effects";
 import bgUrl from "./resources/background.png";
 import midUrl from "./resources/billboard_front.png";
 import frontUrl from "./resources/billboard_info.png";
+import { map_range } from "utils/math";
 
 import "./materials/layerMaterial";
 
@@ -46,6 +48,7 @@ const Scene = ({ dof, isMobile }) => {
   const textures = useTexture([bgUrl, midUrl, frontUrl]);
   const subject = useRef();
   const group = useRef();
+  const gyro = useRef({ x: 0, y: 0 });
   const layersRef = useRef([]);
   const [movement] = useState(() => new THREE.Vector3());
   const [temp] = useState(() => new THREE.Vector3());
@@ -78,10 +81,21 @@ const Scene = ({ dof, isMobile }) => {
     },
   ];
 
+  useEffect(() => {
+    window.addEventListener("deviceorientation", logIt);
+    return () => window.removeEventListener("deviceorientation", logIt);
+  }, []);
+
+  const logIt = (e) => {
+    let _x = map_range(e.gamma.toFixed(1), -25, 25, -1, 1).toFixed(2);
+    let _y = map_range(e.beta.toFixed(1), 20, 65, -1, 1).toFixed(2);
+    gyro.current = { x: _x, y: _y };
+  };
+
   useFrame((state, delta) => {
     dof.current.target = focus.lerp(subject.current.position, 1);
-    let _x = isMobile ? state.mouse.x : state.mouse.x;
-    let _y = isMobile ? state.mouse.y : state.mouse.y;
+    let _x = isMobile ? gyro.current.x : state.mouse.x;
+    let _y = isMobile ? gyro.current.y : state.mouse.y;
     movement.lerp(temp.set(_x, _y * 0.2, 0), 0.1);
     group.current.rotation.x = THREE.MathUtils.lerp(
       group.current.rotation.x,

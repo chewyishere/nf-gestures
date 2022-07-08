@@ -31,6 +31,6 @@
 
   # This actually sets the username and password. Feel free to change it; the default is:
   # username: nf-mobile
-  # password: mobilefun!
+  # password: havefun!
   [headers.values]
-    Basic-Auth = "nf-mobile:mobilefun!"
+    Basic-Auth = "nf-mobile:havefun!"

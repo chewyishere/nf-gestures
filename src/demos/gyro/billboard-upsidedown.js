@@ -4,9 +4,7 @@ import { home } from "data/app";
 import { useUIContext } from "contexts/ui";
 
 export default function BillboardUpSideDown() {
-  const { showDebug, isPermissionGranded, setIsPermissionGranded } =
-    useUIContext();
-  // const [rotate, setRotate] = useState(0);
+  const { showDebug } = useUIContext();
   const [log, setLog] = useState("alpha:" + 360 + " beta:" + 0 + " gamma:" + 0);
 
   const rotate = useMotionValue(0);
@@ -16,19 +14,9 @@ export default function BillboardUpSideDown() {
   const opacity_up = useTransform(rotate, input, [1, 0, 1]);
 
   useEffect(() => {
+    window.addEventListener("deviceorientation", logIt);
     return () => window.removeEventListener("deviceorientation", logIt);
   }, []);
-
-  function requestOrientationPermission() {
-    DeviceOrientationEvent.requestPermission()
-      .then((response) => {
-        if (response === "granted") {
-          window.addEventListener("deviceorientation", logIt);
-          setIsPermissionGranded(true);
-        }
-      })
-      .catch(console.error);
-  }
 
   const logIt = (e) => {
     let _l =
@@ -46,14 +34,6 @@ export default function BillboardUpSideDown() {
     <div className="upsidedown billboard flex-center">
       {showDebug && (
         <div className="debug__modal">
-          {!isPermissionGranded && (
-            <button
-              className="permission center-abs"
-              onClick={requestOrientationPermission}
-            >
-              Request permission
-            </button>
-          )}
           <p className="debug">{log}</p>
         </div>
       )}
